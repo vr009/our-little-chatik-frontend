@@ -1,0 +1,8 @@
+.chatarea {
+    display: block;
+    width: 100%;
+}
+
+.layout {
+    display: flex;
+}
