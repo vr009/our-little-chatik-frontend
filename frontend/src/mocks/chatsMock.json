@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "name": "Grisha",
+    "surname": "Tupikov",
+    "avatar": "",
+    "lastMessage": "Ыыыы"
+  },
+  {
+    "id": 2,
+    "name": "Slavik",
+    "surname": "Ryanov",
+    "avatar": "",
+    "lastMessage": "Привет, как дела?"
+  },
+  {
+    "id": 3,
+    "name": "Cristiano ",
+    "surname": "Ronaldo",
+    "avatar": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Cristiano_Ronaldo_2018.jpg",
+    "lastMessage": "Suuuiiiiiii"
+  },
+  {
+    "id": 4,
+    "name": "Kostik",
+    "surname": "Dubovetc",
+    "avatar": "",
+    "lastMessage": "Привет, извини, был на даче"
+  },
+  {
+    "id": 5,
+    "name": "Name",
+    "surname": "Surname",
+    "avatar": "",
+    "lastMessage": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  },
+  {
+    "id": 6,
+    "name": "Name",
+    "surname": "Surname",
+    "avatar": "",
+    "lastMessage": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+]
