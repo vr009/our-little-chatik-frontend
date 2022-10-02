@@ -1,22 +1,29 @@
 import s from "./ChatArea.module.css"
 import { useParams } from "react-router-dom";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
+import {getMessages} from "../../mocks/serviceMocks.js";
+import Messages from "./Messages/Messages";
 
 
 
 export default function ChatArea() {
     const params = useParams()
 
-    useEffect(()=>{
-        console.log("params:", params)
-    },[params])
+    const [messages, setMessages] = useState(null)
 
-    console.log({params})
+    useEffect( () => {
+        const current = params.userId
+        getMessages(current).then(data => {
+            setMessages(data);
+        })
+    })
+
     return (
         <>
             <div className={s.main}>
-                <h1>Ops!</h1>
-                <h2>There should be a chat with userID {params.userId}</h2>
+                <h1> Ops! </h1>
+                <h2> There should be a chat with userID {params.userId} </h2>
+                <Messages messageItems={messages} />
             </div>
         </>
     );
