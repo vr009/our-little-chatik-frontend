@@ -1,5 +1,7 @@
 import {Message} from "./Message";
 
+const YOUR_ID = "337295eb-cbde-479c-a4ee-683019adc838"
+
 export interface messageItem {
     "ChatID"?: string,
     "SenderID"?: string,
@@ -15,19 +17,13 @@ export interface messagesProps {
 
 export default function Messages (props) {
 
-    if (props.messageItems === null) {
-        return <h3 >Загрузка информации...</h3>;
-    }
-
-    if (props.messageItems.length === 0) {
-        return <h3 >Сообщений пока нет :( </h3>;
-    } else
 
     return (
         <>
             {
+                // <h3 style={{margin: 'auto'}}>Загрузка информации...</h3>
                 props.messageItems.map((message,index) => {
-                    return <Message key={index} text={message.Payload}/>
+                    return <Message key={index} text={message.Payload} isMine={(message.SenderID === YOUR_ID)}/>
                 })
             }
         </>

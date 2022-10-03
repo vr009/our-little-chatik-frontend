@@ -1,5 +1,6 @@
 menu {
     width: 350px;
+    display: inline-block;
 }
 
 .chatarea {

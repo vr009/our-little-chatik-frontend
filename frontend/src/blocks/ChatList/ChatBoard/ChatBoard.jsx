@@ -8,11 +8,11 @@ export default function ChatBoard (props) {
 
     //todo create a sceleton
     if (props.chats === null) {
-        return <h3>Загрузка информации...</h3>;
+        return <h3 style={{margin: "auto"}}>Загрузка информации...</h3>;
     }
 
     if (props.chats === "no data") {
-        return <h3>Нет информации</h3>;
+        return <h3 style={{margin: "auto"}}>Нет информации</h3>;
     }
 
     return (

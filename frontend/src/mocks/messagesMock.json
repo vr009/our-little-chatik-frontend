@@ -31,6 +31,126 @@
       "Payload": "У меня все ок",
       "CreatedAt": "782345674",
       "SessionStart": true
+    },
+    {
+      "ChatID": "1efeba24-9e0d-4698-95e1-5df061001c0b",
+      "SenderID": "337295eb-cbde-479c-a4ee-683019adc838",
+      "MsgID": "b2ee083a-02c4-4469-8512-ef270dff61a7",
+      "Payload": "Здорово",
+      "CreatedAt": "782345674",
+      "SessionStart": true
+    },
+    {
+      "ChatID": "1efeba24-9e0d-4698-95e1-5df061001c0b",
+      "SenderID": "337295eb-cbde-479c-a4ee-683019adc839",
+      "MsgID": "b2ee083a-02c4-4469-8512-ef270dff61a7",
+      "Payload": "Ну как там с деньгами?",
+      "CreatedAt": "782345674",
+      "SessionStart": true
+    },
+    {
+      "ChatID": "1efeba24-9e0d-4698-95e1-5df061001c0b",
+      "SenderID": "337295eb-cbde-479c-a4ee-683019adc838",
+      "MsgID": "b2ee083a-02c4-4469-8512-ef270dff61a7",
+      "Payload": "А?",
+      "CreatedAt": "782345674",
+      "SessionStart": true
+    },
+    {
+      "ChatID": "1efeba24-9e0d-4698-95e1-5df061001c0b",
+      "SenderID": "337295eb-cbde-479c-a4ee-683019adc839",
+      "MsgID": "b2ee083a-02c4-4469-8512-ef270dff61a7",
+      "Payload": "Как с деньгами-то там?",
+      "CreatedAt": "782345674",
+      "SessionStart": true
+    },
+    {
+      "ChatID": "1efeba24-9e0d-4698-95e1-5df061001c0b",
+      "SenderID": "337295eb-cbde-479c-a4ee-683019adc838",
+      "MsgID": "b2ee083a-02c4-4469-8512-ef270dff61a7",
+      "Payload": "Чё с деньгами?",
+      "CreatedAt": "782345674",
+      "SessionStart": true
+    },
+    {
+      "ChatID": "1efeba24-9e0d-4698-95e1-5df061001c0b",
+      "SenderID": "337295eb-cbde-479c-a4ee-683019adc839",
+      "MsgID": "b2ee083a-02c4-4469-8512-ef270dff61a7",
+      "Payload": "Чё?",
+      "CreatedAt": "782345674",
+      "SessionStart": true
+    },
+    {
+      "ChatID": "1efeba24-9e0d-4698-95e1-5df061001c0b",
+      "SenderID": "337295eb-cbde-479c-a4ee-683019adc838",
+      "MsgID": "b2ee083a-02c4-4469-8512-ef270dff61a7",
+      "Payload": "Куда ты звонишь?",
+      "CreatedAt": "782345674",
+      "SessionStart": true
+    },
+    {
+      "ChatID": "1efeba24-9e0d-4698-95e1-5df061001c0b",
+      "SenderID": "337295eb-cbde-479c-a4ee-683019adc839",
+      "MsgID": "b2ee083a-02c4-4469-8512-ef270dff61a7",
+      "Payload": "Тебе звоню.",
+      "CreatedAt": "782345674",
+      "SessionStart": true
+    },
+    {
+      "ChatID": "1efeba24-9e0d-4698-95e1-5df061001c0b",
+      "SenderID": "337295eb-cbde-479c-a4ee-683019adc838",
+      "MsgID": "b2ee083a-02c4-4469-8512-ef270dff61a7",
+      "Payload": "Кому?",
+      "CreatedAt": "782345674",
+      "SessionStart": true
+    },
+    {
+      "ChatID": "1efeba24-9e0d-4698-95e1-5df061001c0b",
+      "SenderID": "337295eb-cbde-479c-a4ee-683019adc839",
+      "MsgID": "b2ee083a-02c4-4469-8512-ef270dff61a7",
+      "Payload": "Ну тебе",
+      "CreatedAt": "782345674",
+      "SessionStart": true
+    },
+    {
+      "ChatID": "1efeba24-9e0d-4698-95e1-5df061001c0b",
+      "SenderID": "337295eb-cbde-479c-a4ee-683019adc838",
+      "MsgID": "b2ee083a-02c4-4469-8512-ef270dff61a7",
+      "Payload": "Кому тебе?",
+      "CreatedAt": "782345674",
+      "SessionStart": true
+    },
+    {
+      "ChatID": "1efeba24-9e0d-4698-95e1-5df061001c0b",
+      "SenderID": "337295eb-cbde-479c-a4ee-683019adc839",
+      "MsgID": "b2ee083a-02c4-4469-8512-ef270dff61a7",
+      "Payload": "А вот тебе вот.",
+      "CreatedAt": "782345674",
+      "SessionStart": true
+    },
+    {
+      "ChatID": "1efeba24-9e0d-4698-95e1-5df061001c0b",
+      "SenderID": "337295eb-cbde-479c-a4ee-683019adc838",
+      "MsgID": "b2ee083a-02c4-4469-8512-ef270dff61a7",
+      "Payload": "Ты кто такой?",
+      "CreatedAt": "782345674",
+      "SessionStart": true
+    },
+    {
+      "ChatID": "1efeba24-9e0d-4698-95e1-5df061001c0b",
+      "SenderID": "337295eb-cbde-479c-a4ee-683019adc839",
+      "MsgID": "b2ee083a-02c4-4469-8512-ef270dff61a7",
+      "Payload": "Михал Палыч.",
+      "CreatedAt": "782345674",
+      "SessionStart": true
+    },
+    {
+      "ChatID": "1efeba24-9e0d-4698-95e1-5df061001c0b",
+      "SenderID": "337295eb-cbde-479c-a4ee-683019adc838",
+      "MsgID": "b2ee083a-02c4-4469-8512-ef270dff61a7",
+      "Payload": "Какой Михал Палыч?",
+      "CreatedAt": "782345674",
+      "SessionStart": true
     }
   ],
   "1efeba24-9e0d-4698-95e1-5df061001c1g": [
