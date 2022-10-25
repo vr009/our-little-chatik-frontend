@@ -9,12 +9,13 @@ type Props = {
 
 export const Message = (props: Props) => {
 
-    const messageStyle = {
+    const  messageStyle = {
         color: props.isMine ?  "black" : "white",
         backgroundColor: props.isMine ? "#fcc521":"DodgerBlue",
         alignSelf: props.isMine ?  "flex-end" : "flex-start",
         borderRadius: props.isMine ? "8px 8px 8px 0":"8px 8px 0 8px",
     };
+
     const dateStyle = {
         alignSelf: props.isMine ?  "flex-end" : "flex-start",
         textAlign: props.isMine ?  "right" : "left",
@@ -24,13 +25,18 @@ export const Message = (props: Props) => {
     // console.log(messageTime)
     return (
         <>
-            <div className={s.messageLine} style={messageStyle}>
-                <p className={s.messageText} >{props.text}</p>
+            <div className={`${s.messageLine} ${ props.isMine ? s.mine : s.notMine}`}>
+                <div>
+                    <p className={s.messageText}>{props.text}</p>
+                </div>
+                <div className={s.messageDate}>
+                    <p className={s.messageDate_time} >{messageTime}</p>
+                </div>
             </div>
-            <div style={s.messageData}>
-                {/*<p className={s.messageText} >{messageTime.getUTCHours()}:{messageTime.getUTCMinutes()}</p>*/}
-                <p className={s.messageText} >{messageTime}</p>
-            </div>
+            {/*<div style={s.messageData}>*/}
+            {/*    /!*<p className={s.messageText} >{messageTime.getUTCHours()}:{messageTime.getUTCMinutes()}</p>*!/*/}
+            {/*    <p className={s.messageText} >{messageTime}</p>*/}
+            {/*</div>*/}
         </>
     )
 };

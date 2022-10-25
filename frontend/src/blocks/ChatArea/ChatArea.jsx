@@ -20,7 +20,6 @@ export default function ChatArea() {
         getMessages(current).then(data => {
             setMessages(data);
         })
-        console.log(messages)
     },[params.userId])
 
     const handleAddMessageClick = useCallback(() => {
@@ -32,13 +31,10 @@ export default function ChatArea() {
             return;
         }
 
-        let currentDate = new Date()
-
-
         let currentMessage = {
             "Payload": message,
             "SenderID": YOUR_ID,
-            "CreatedAt": currentDate.getTime()
+            "CreatedAt": new Date().getTime()
         }
 
         console.log(currentMessage)
@@ -47,19 +43,6 @@ export default function ChatArea() {
         inputRef.current.value = "";
     }, []);
 
-
-    // setInterval(function() {
-    //
-    //     const myArray = ['Говно', 'Какашка', 'Блеа', 'Как дела', 'Заколебёшь'];
-    //     let rand = Math.floor(Math.random()*myArray.length);
-    //
-    //     let currentMessage = {
-    //         "Payload": myArray[rand],
-    //         "SenderID": "wqeqr123fsdf112ewq"
-    //     }
-    //     setMessages((messages) => [...messages, currentMessage]);
-    //     console.log(currentMessage)
-    // }, 15000)
 
     const handleInputKeyPress = ((event) => {
             if (event.key === "Enter") {
@@ -79,11 +62,12 @@ export default function ChatArea() {
         <>
             <div className={s.main}>
                 <ChatHeader name={params.userId}/>
-                <messageArea >
-                    <div className={s.messages} ref={containerRef}>
-                        <Messages messageItems={messages} container={containerRef.current}/>
-                    </div>
-                </messageArea>
+                <div className={s.messages} ref={containerRef}>
+                    <Messages
+                        messageItems={messages}
+                        container={containerRef.current}
+                    />
+                </div>
                 <div className={s.inputs}>
                     <input
                         className={s.messageInput}

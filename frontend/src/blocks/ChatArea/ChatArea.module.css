@@ -11,16 +11,16 @@ content {
     flex-grow: 1;
 }
 
-messageArea {
-    display: flex;
-    background-color: #222222;
-    border-top: 1px solid #a2a2a2;
-    width: 100%;
-    height: calc(100% - 90px);
+/*messageArea {*/
+/*    display: flex;*/
+/*    background-color: #222222;*/
+/*    border-top: 1px solid #a2a2a2;*/
+/*    width: 100%;*/
+/*    height: calc(100% - 90px);*/
 
-    flex-direction: column-reverse;
-    overflow-y: auto;
-}
+/*    flex-direction: column-reverse;*/
+/*    overflow-y: auto;*/
+/*}*/
 
 .inputs {
     padding: 12px;
@@ -58,6 +58,7 @@ messageArea {
 /*}*/
 
 .messages {
+    width: 100%;
     padding: 12px;
     height: calc(100vh - 90px);
     overflow: scroll;

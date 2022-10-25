@@ -1,4 +1,6 @@
 import {Message} from "./Message";
+import {useEffect} from "react";
+import {scrollToBottom} from "../../../utils/utils";
 
 const YOUR_ID = "337295eb-cbde-479c-a4ee-683019adc838"
 
@@ -13,10 +15,16 @@ export interface messageItem {
 
 export interface messagesProps {
     messageItems: messageItem[],
+    container: HTMLDivElement | null;
 }
 
-export default function Messages (props) {
+export default function Messages (props: messagesProps) {
 
+    const { messageItems, container } = props;
+
+    useEffect(() => {
+        scrollToBottom(container)
+    }, [container, messageItems]);
 
     return (
         <>
