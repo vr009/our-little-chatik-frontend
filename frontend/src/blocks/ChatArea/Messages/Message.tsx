@@ -1,23 +1,36 @@
+// @ts-ignore
 import s from "./Message.module.css"
 
 type Props = {
     text: string;
     isMine: boolean;
+    date: number;
 };
 
 export const Message = (props: Props) => {
 
-    const style = {
-        color: props.isMine ? "white" : "black",
-        backgroundColor: props.isMine ? "DodgerBlue" : "#fcc521",
-        marginLeft: props.isMine ? "auto" : "",
-        borderRadius: props.isMine ? "8px 8px 0 8px" : "8px 8px 8px 0",
+    const messageStyle = {
+        color: props.isMine ?  "black" : "white",
+        backgroundColor: props.isMine ? "#fcc521":"DodgerBlue",
+        alignSelf: props.isMine ?  "flex-end" : "flex-start",
+        borderRadius: props.isMine ? "8px 8px 8px 0":"8px 8px 0 8px",
+    };
+    const dateStyle = {
+        alignSelf: props.isMine ?  "flex-end" : "flex-start",
+        textAlign: props.isMine ?  "right" : "left",
     };
 
-
+    let messageTime = new Date(props.date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    // console.log(messageTime)
     return (
-        <div className={s.messageLine}>
-            <p className={s.messageText} style={style}>{props.text}</p>
-        </div>
+        <>
+            <div className={s.messageLine} style={messageStyle}>
+                <p className={s.messageText} >{props.text}</p>
+            </div>
+            <div style={s.messageData}>
+                {/*<p className={s.messageText} >{messageTime.getUTCHours()}:{messageTime.getUTCMinutes()}</p>*/}
+                <p className={s.messageText} >{messageTime}</p>
+            </div>
+        </>
     )
 };

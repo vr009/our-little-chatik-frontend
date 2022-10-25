@@ -7,7 +7,7 @@ export interface messageItem {
     "SenderID"?: string,
     "MsgID"?: string,
     "Payload"?: string,
-    "CreatedAt"?: Date,
+    "CreatedAt"?: number,
     "SessionStart"?: boolean
 }
 
@@ -21,9 +21,8 @@ export default function Messages (props) {
     return (
         <>
             {
-                // <h3 style={{margin: 'auto'}}>Загрузка информации...</h3>
                 props.messageItems.map((message,index) => {
-                    return <Message key={index} text={message.Payload} isMine={(message.SenderID === YOUR_ID)}/>
+                    return <Message key={index} text={message.Payload} isMine={(message.SenderID === YOUR_ID)} date={message.CreatedAt}/>
                 })
             }
         </>

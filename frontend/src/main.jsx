@@ -43,6 +43,7 @@ const router = createBrowserRouter([
             {
                 path: ":userId",
                 element: <ChatArea />,
+                errorElement: <ErrorPage />,
             },
         ],
     },

@@ -1,11 +1,16 @@
 .messageLine {
     padding: 5px 10px;
     display: flex;
+    margin-top: 15px;
 }
 
 .messageText {
     padding: 5px 10px;
     border-radius: 4px;
+    max-width: 370px;
 }
 
+.messageData{
+
+}
 

@@ -4,7 +4,7 @@ import {getChats} from "../../../mocks/serviceMocks.js";
 import {useEffect, useState} from "react";
 
 export default function ChatBoard (props) {
-    console.log(props.chats)
+    // console.log(props.chats)
 
     //todo create a sceleton
     if (props.chats === null) {
@@ -19,7 +19,7 @@ export default function ChatBoard (props) {
         <div className={s.board}>
             {
                 props.chats.map((element) => {
-                    console.log("Имя",element.name)
+                    // console.log("Имя",element.name)
 
                     return (
                         <ChatItem
