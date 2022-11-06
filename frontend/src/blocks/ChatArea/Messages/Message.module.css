@@ -1,0 +1,45 @@
+.messageLine {
+    padding: 5px 10px;
+    display: flex;
+    margin-top: 15px;
+}
+
+.messageText {
+    padding: 5px 10px;
+    border-radius: 4px;
+    max-width: 370px;
+}
+
+.messageDate {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-end;
+}
+
+.messageDate_time {
+    padding: 5px 10px;
+    max-width: 370px;
+}
+
+
+
+
+.mine {
+    align-self: flex-end;
+    flex-direction: row-reverse;
+}
+
+.mine .messageText {
+    background-color: #fcc521;
+    border-radius: 8px 8px 0 8px;
+}
+
+.notMine {
+    align-self: flex-start;
+}
+
+.notMine .messageText {
+    background-color: DodgerBlue;
+    border-radius: 8px 8px 8px 0;
+}
+

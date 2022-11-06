@@ -1,41 +1,62 @@
 [
   {
-    "id": 1,
+    "id": "1efeba24-9e0d-4698-95e1-5df061001c0b",
     "name": "Grisha",
     "surname": "Tupikov",
     "avatar": "",
     "lastMessage": "Ыыыы"
   },
   {
-    "id": 2,
+    "id": "1efeba24-9e0d-4698-95e1-5df061001c1g",
     "name": "Slavik",
     "surname": "Ryanov",
     "avatar": "",
     "lastMessage": "Привет, как дела?"
   },
   {
-    "id": 3,
+    "id": "1efeba24-9e0d-4698-95e1-5df061001c1g",
     "name": "Cristiano ",
     "surname": "Ronaldo",
     "avatar": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Cristiano_Ronaldo_2018.jpg",
     "lastMessage": "Suuuiiiiiii"
   },
   {
-    "id": 4,
+    "id": "1efeba24-9e0d-4698-95e1-5df061001c1g",
     "name": "Kostik",
     "surname": "Dubovetc",
     "avatar": "",
     "lastMessage": "Привет, извини, был на даче"
   },
   {
-    "id": 5,
+    "id": "1efeba24-9e0d-4698-95e1-5df061001c1g",
     "name": "Name",
     "surname": "Surname",
     "avatar": "",
     "lastMessage": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
   },
   {
-    "id": 6,
+    "id": "1efeba24-9e0d-4698-95e1-5df061001c1g",
+    "name": "Name",
+    "surname": "Surname",
+    "avatar": "",
+    "lastMessage": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  },
+  {
+    "id": "1efeba24-9e0d-4698-95e1-5df061001c1g",
+    "name": "Name",
+    "surname": "Surname",
+    "avatar": "",
+    "lastMessage": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  },
+  {
+    "id": "1efeba24-9e0d-4698-95e1-5df061001c1g",
+    "name": "Name",
+    "surname": "Surname",
+    "avatar": "",
+    "lastMessage": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  },
+  {
+    "id": "1efeba24-9e0d-4698-95e1-5df061001c1g",
     "name": "Name",
     "surname": "Surname",
     "avatar": "",

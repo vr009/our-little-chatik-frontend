@@ -18,10 +18,14 @@ export default function MessagesPage(props) {
 
     return (
         <div className={s.layout}>
-            <ChatBoard chats={chats}/>
-            <div className={s.chatarea}>
-                <Outlet/>
-            </div>
+            <menu>
+                <ChatBoard chats={chats}/>
+            </menu>
+            <content>
+                <div className={s.chatarea}>
+                    <Outlet/>
+                </div>
+            </content>
         </div>
     );
 }

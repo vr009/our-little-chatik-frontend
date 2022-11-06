@@ -4,22 +4,22 @@ import {getChats} from "../../../mocks/serviceMocks.js";
 import {useEffect, useState} from "react";
 
 export default function ChatBoard (props) {
-    console.log(props.chats)
+    // console.log(props.chats)
 
     //todo create a sceleton
     if (props.chats === null) {
-        return <h3>Загрузка информации...</h3>;
+        return <h3 style={{margin: "auto"}}>Загрузка информации...</h3>;
     }
 
     if (props.chats === "no data") {
-        return <h3>Нет информации</h3>;
+        return <h3 style={{margin: "auto"}}>Нет информации</h3>;
     }
 
     return (
         <div className={s.board}>
             {
                 props.chats.map((element) => {
-                    console.log("Имя",element.name)
+                    // console.log("Имя",element.name)
 
                     return (
                         <ChatItem
