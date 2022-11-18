@@ -1,5 +1,5 @@
 import s from './404.module.css'
-import Button from "../../components/button/Button";
+import Button, {ButtonLink} from "../../components/button/Button";
 import {Link, useRouteError} from "react-router-dom";
 
 export default function NotFoundPage() {
@@ -18,7 +18,7 @@ export default function NotFoundPage() {
                 <p>
                     <i>{error.statusText || error.message}</i>
                 </p>
-                <Button onClick={handleclick('/')}>Вернуться назад</Button>
+                <ButtonLink href={'/'}>Вернуться назад</ButtonLink>
             </div>
         </>
     );

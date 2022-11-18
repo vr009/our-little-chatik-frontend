@@ -1,58 +1,85 @@
 import s from './root.module.css'
 import Button from "../../components/button/Button";
+import {useEffect, useState} from "react";
+import {fetchFunc} from "../../utils/utils.ts";
 
 export default function Root(props) {
+
+    const [nickname, setNickname] = useState('')
+    const [password, setPassword] = useState('')
+    const [email, setEmail] = useState('')
+
+    function handleChange (setFunction,event) {
+        event.preventDefault()
+        setFunction(event.target.value)
+        console.log(event.target.value)
+    }
+
+
+    // function handleSubmit (event) {
+    //     event.preventDefault()
+    //     fetch('http://localhost:8086/api/v1/user/new', {
+    //         method: "POST",
+    //         body: JSON.stringify({
+    //             nickname: nickname,
+    //             password: password
+    //         })
+    //     })
+    //         .then(res => {
+    //             if (!res.ok) throw Error(res.statusText);
+    //             return res.json();
+    //         })
+    //         .then(data => console.log(data))
+    //         .catch(error => console.log(error));
+    // }
+
+    function handleSubmit (event) {
+        event.preventDefault()
+        let body = JSON.stringify({
+            nickname: nickname,
+            password: password
+        })
+        fetchFunc('http://localhost:8086/api/v1/user/new',"POST", body)
+        console.log(nickname,';',password,';',email)
+    }
+
     const heading =  (props.isNew) ? 'Привет, зарегистрированный пользователь' :  'Привет, новый пользователь';
     return (
         <>
             <div className={s.main} id="welcome">
                 <h1>{heading}</h1>
                 <div className={s.form}>
-                    <form id="welcome-form" role="search">
+                    <form id="welcome-form" onSubmit={handleSubmit}>
                         <input
-                            id="q"
-                            aria-label="Login"
-                            placeholder="Login"
-                            type="email"
-                            name="q"
+                            placeholder="Nickname"
+                            type="text"
+                            onChange={(e) => handleChange(setNickname,e)}
                         />
 
                         {!props.isNew && (
                             <input
-                                id="q"
-                                aria-label="Login"
-                                placeholder="Your name"
+                                placeholder="Your email"
                                 type="email"
-                                name="q"
+                                onChange={(e) => handleChange(setEmail,e)}
                             />
                         )}
 
                         <input
-                            id="q"
-                            aria-label="Password"
                             placeholder="Password"
                             type="password"
-                            name="q"
+                            onChange={(e) => handleChange(setPassword,e)}
                         />
-                        <div
-                            id="search-spinner"
-                            aria-hidden
-                            hidden={true}
-                        />
-                        <div
-                            className="sr-only"
-                            aria-live="polite"
-                        ></div>
-                    </form>
-                    <form method="post">
-                        <Button>
+
+                        <button
+                            type="submit"
+                        >
                             {!props.isNew && (
                                 "Sign in"
                             )}
                             {props.isNew && (
                                 "Log in"
                             )}
-                        </Button>
+                        </button>
                     </form>
                 </div>
             </div>
