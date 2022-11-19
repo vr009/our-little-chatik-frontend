@@ -17,3 +17,22 @@
     width: 100%;
     margin: 0 0 15px;
 }
+
+.alert {
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: darkred;
+    color: #dadada;
+    margin: 0 0 15px;
+    text-align: center;
+}
+
+.heading {
+    margin: 0 0 15px;
+}
+
+.disabled {
+    display: none;
+    margin: 0 0 15px;
+}
+

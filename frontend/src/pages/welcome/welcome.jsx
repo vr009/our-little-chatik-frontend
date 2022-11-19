@@ -5,14 +5,11 @@ import {Link} from "react-router-dom";
 export default function Welcome() {
     const heading =  'Привет!';
 
-    function handleclick(url) {
-        window.location.assign(url)
-    }
 
     return (
         <>
             <div className={s.main} id="welcome">
-                <h1>{heading}</h1>
+                <h1 className={s.heading}>{heading}</h1>
                 <ButtonLink
                     href={'reg'}
                     children={'Регистрация'}

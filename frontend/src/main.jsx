@@ -26,12 +26,12 @@ const router = createBrowserRouter([
     },
     {
         path: "auth",
-        element: <Root isNew={true}/>,
+        element: <Root isRegistration={false}/>,
         errorElement: <ErrorPage />,
     },
     {
         path: "reg",
-        element: <Root isNew={false}/>,
+        element: <Root isRegistration={true}/>,
         errorElement: <ErrorPage />,
     },
     {

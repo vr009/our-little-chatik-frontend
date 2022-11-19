@@ -6,14 +6,8 @@ export const scrollToBottom = (container: HTMLElement | null) => {
 };
 
 export function fetchFunc (url:string,method:string,body:string) {
-    fetch(url, {
+    return fetch(url, {
         method: method,
         body: body,
     })
-        .then(res => {
-            if (!res.ok) throw Error(res.statusText);
-            return res.json();
-        })
-        .then(data => console.log(data))
-        .catch(error => console.log(error));
 }
