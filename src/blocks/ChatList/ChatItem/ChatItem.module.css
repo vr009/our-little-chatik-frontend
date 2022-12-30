@@ -1,0 +1,23 @@
+.logo {
+    width: 45px;
+    height: 45px;
+    border-radius: 4px;
+    margin-right: 16px;
+}
+
+.info {
+    display: flex;
+    text-decoration: none;
+    color: #ffffff;
+    margin-bottom: 10px;
+    border-bottom: solid #333333;
+    padding: 10px 15px;
+}
+
+.message {
+    color: #a2a2a2;
+}
+
+.name {
+    font-weight: 500;
+}
