@@ -59,7 +59,6 @@ content {
 
 .messages {
     width: 100%;
-    padding: 12px;
     height: calc(100vh - 90px);
     overflow: scroll;
     display: flex;

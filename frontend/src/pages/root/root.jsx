@@ -5,7 +5,7 @@ import {fetchFunc} from "../../utils/utils.ts";
 import { redirect } from "react-router-dom";
 import {useNavigate} from "react-router";
 
-const CREATE_USER_API_URL = 'http://localhost:8086/api/v1/user/new';
+const CREATE_USER_API_URL = 'http://localhost:8080/api/gateway/signup';
 const AUTH_USER_API_URL = '';
 
 export default function Root(props) {
