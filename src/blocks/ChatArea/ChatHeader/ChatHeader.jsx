@@ -2,6 +2,7 @@ import s from "./ChatHeader.module.css"
 import Picture from "../../../components/picture/Picture";
 
 export default function ChatHeader (props) {
+    
     return (
         <div className={s.header}>
             <div className={s.content}>

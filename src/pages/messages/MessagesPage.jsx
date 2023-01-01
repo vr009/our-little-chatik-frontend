@@ -9,22 +9,35 @@ import {getChats} from "../../mocks/serviceMocks.js";
 export default function MessagesPage(props) {
     const [chats, setChats] = useState([]);
 
+    const [searchChats, setSearchChats] = useState([]);
+
+    const [isReady, setReady] = useState(false);
+
     const searchRef = useRef('');
 
     function handleChange() {
-        if (chats !== []) {
-            setChats(chats.filter(chat => {
+        if (searchRef.current.value !== '') {
+            setSearchChats(chats.filter(chat => {
                 return chat.name.toUpperCase().includes(searchRef.current.value.toUpperCase());
             }));
+        } else {
+            setSearchChats(chats);
         }
     }
 
     useEffect(() => {
-        getChats().then(data => {
+        setReady(false);
+        getChats()
+            .then(data => {
                 setChats(data)
-            }
-        );
-    });
+                setSearchChats(data)
+                setReady(true)
+            });
+    },[]);
+
+    // useEffect(() => {
+    //
+    // },[]);
 
     return (
         <div className={s.layout}>
@@ -42,9 +55,15 @@ export default function MessagesPage(props) {
                         </div>
                     </div>
                 </div>
-                <ChatBoard chats={chats}/>
+
+                {
+                    isReady ?
+                        <ChatBoard isReady={isReady} chats={searchChats}/>
+                        : <h3 style={{margin: "auto"}}>Загрузка информации...</h3>
+                }
+
             </div>
-            <div>
+            <div className={s.chatContent}>
                 <div className={s.chatarea}>
                     <Outlet/>
                 </div>

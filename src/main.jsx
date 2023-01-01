@@ -1,19 +1,19 @@
 import React from 'react'
+import store from "./redux/store";
+import {Provider} from "react-redux"
 
 import {
     createBrowserRouter,
     RouterProvider,
-    Route,
 } from "react-router-dom"
 
 
 
 import ReactDOM from 'react-dom/client'
-import App from './App'
 import './index.css'
 import Root from "./pages/root/root.jsx";
 import ErrorPage from './pages/404/404.jsx';
-import MessagesPage from "./pages/messages/messages";
+import MessagesPage from "./pages/messages/MessagesPage.jsx";
 import ChatArea from "./blocks/ChatArea/ChatArea";
 import Welcome from "./pages/welcome/welcome.jsx";
 
@@ -51,6 +51,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-      <RouterProvider router={router} />
+      <Provider store={store}>
+          <RouterProvider router={router} />
+      </Provider>
   </React.StrictMode>
 )
