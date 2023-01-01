@@ -1,14 +1,23 @@
 import s from './messages.module.css'
-import ChatItem from "../../blocks/ChatList/ChatItem/ChatItem";
 import chatIcon from "../../assets/newChat.svg"
 import ChatBoard from "../../blocks/ChatList/ChatBoard/ChatBoard";
 import { Outlet } from "react-router-dom";
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {getChats} from "../../mocks/serviceMocks.js";
 
 
 export default function MessagesPage(props) {
-    const [chats, setChats] = useState(null);
+    const [chats, setChats] = useState([]);
+
+    const searchRef = useRef('');
+
+    function handleChange() {
+        if (chats !== []) {
+            setChats(chats.filter(chat => {
+                return chat.name.toUpperCase().includes(searchRef.current.value.toUpperCase());
+            }));
+        }
+    }
 
     useEffect(() => {
         getChats().then(data => {
@@ -25,6 +34,8 @@ export default function MessagesPage(props) {
                         <input
                             className={s.messageInput}
                             placeholder="Найти чат"
+                            ref={searchRef}
+                            onChange={handleChange}
                         />
                         <div className={s.addIcon}>
                             <img src={chatIcon}/>
@@ -33,11 +44,11 @@ export default function MessagesPage(props) {
                 </div>
                 <ChatBoard chats={chats}/>
             </div>
-            <content>
+            <div>
                 <div className={s.chatarea}>
                     <Outlet/>
                 </div>
-            </content>
+            </div>
         </div>
     );
 }
