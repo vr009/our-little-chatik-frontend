@@ -11,14 +11,18 @@ export default function ChatArea() {
     const params = useParams()
 
     const [messages, setMessages] = useState(null)
+    const [isReady, setReady] = useState(false);
 
     const inputRef = useRef(null);
     const containerRef = useRef(null);
 
     useEffect( () => {
+        setReady(false);
         const current = params.userId
-        getMessages(current).then(data => {
-            setMessages(data);
+        getMessages(current)
+            .then(data => {
+                setMessages(data);
+                setReady(true);
         })
     },[params.userId])
 
@@ -50,10 +54,6 @@ export default function ChatArea() {
             }
         });
 
-    if (messages === null) {
-        return <h3 style={{margin: 'auto'}}>Загрузка информации...</h3>;
-    }
-
     if (messages === 0) {
         return <h3 style={{margin: "auto"}}>Сообщений пока нет :( </h3>;
     }
@@ -63,10 +63,13 @@ export default function ChatArea() {
             <div className={s.main}>
                 <ChatHeader name={params.userId}/>
                 <div className={s.messages} ref={containerRef}>
-                    <Messages
-                        messageItems={messages}
-                        container={containerRef.current}
-                    />
+                    {
+                        isReady ? <Messages
+                            messageItems={messages}
+                            container={containerRef.current}
+                        /> : <h3 style={{margin: 'auto'}}>Загрузка информации...</h3>
+                    }
+
                 </div>
                 <div className={s.inputs}>
                     <input

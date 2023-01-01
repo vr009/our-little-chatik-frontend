@@ -3,19 +3,18 @@ import messages from './messagesMock.json';
 
 const promiseResponse = data =>
     new Promise(function (resolve, reject) {
-        setTimeout(() => {
-            if (Object.keys(data).length != 0) {
-                resolve(data);
-            } else {
-                resolve("no data");
-            }
-        }, 1000);
+        if (Object.keys(data).length !== 0) {
+            resolve(data);
+        } else {
+            reject("no data");
+        }
     });
 
 export const getChats = () => promiseResponse(chats);
 
 export const getMessages = SenderID => {
-    const accountOperations = messages[SenderID] || [];
+    const userMessages = messages[SenderID] || [];
 
-    return promiseResponse(accountOperations);
+    return promiseResponse(userMessages);
 };
+
