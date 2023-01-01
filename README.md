@@ -2,7 +2,7 @@
 ## Personal project of messenger for training hard skills
 
 ### Additional info
-- [Backend part](https://github.com/vr009/our_little_chatik)
+- [Backend part](https://github.com/vr009/our-little-chatik)
 
 ## Features
 - No features for now
