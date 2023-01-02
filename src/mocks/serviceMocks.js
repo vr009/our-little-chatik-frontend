@@ -3,6 +3,7 @@ import messages from './messagesMock.json';
 
 const promiseResponse = data =>
     new Promise(function (resolve, reject) {
+        // todo переписать
         if (Object.keys(data).length !== 0) {
             resolve(data);
         } else {
