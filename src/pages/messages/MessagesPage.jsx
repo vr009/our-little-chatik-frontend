@@ -11,7 +11,7 @@ export default function MessagesPage(props) {
 
     const [searchChats, setSearchChats] = useState([]);
 
-    const [isReady, setReady] = useState(false);
+    const [isReady, setReady] = useState(true);
 
     const searchRef = useRef('');
 
@@ -25,15 +25,15 @@ export default function MessagesPage(props) {
         }
     }
 
-    useEffect(() => {
-        setReady(false);
-        getChats()
-            .then(data => {
-                setChats(data)
-                setSearchChats(data)
-                setReady(true)
-            });
-    },[]);
+    // useEffect(() => {
+    //     setReady(false);
+    //     getChats()
+    //         .then(data => {
+    //             setChats(data)
+    //             setSearchChats(data)
+    //             setReady(true)
+    //         });
+    // },[]);
 
     // useEffect(() => {
     //

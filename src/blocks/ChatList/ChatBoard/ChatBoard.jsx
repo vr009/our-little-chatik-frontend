@@ -1,14 +1,25 @@
 import ChatItem from "../ChatItem/ChatItem.jsx";
 import s from "./ChatBoard.module.css"
+import {useDispatch, useSelector} from "react-redux";
+import {useEffect} from "react";
+import {fetchChats} from "../../../store/chatSlice.js";
 
 
-export default function ChatBoard (props) {
+export default function ChatBoard () {
+
+    const dispatch = useDispatch()
+
+    const chatList = useSelector((state) => state.chatList.chats);
+
+    useEffect(()=>{
+        dispatch(fetchChats());
+
+    },[dispatch])
 
     return (
         <div className={s.board}>
             {
-                props.chats.map((element) => {
-                    return (
+                chatList.map((element) => (
                         <ChatItem
                             avatar={element.avatar}
                             name={element.name}
@@ -17,8 +28,7 @@ export default function ChatBoard (props) {
                             userId={element.id}
                             key={element.id}
                         />
-                    )
-                })
+                ))
             }
         </div>
     );
