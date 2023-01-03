@@ -1,8 +1,10 @@
 import {configureStore} from "@reduxjs/toolkit";
-import chatListReducer from "./chatSlice.js"
+import chatListReducer from "./chatListSlice.js"
+import messageListReducer from "./messagesSlice.js"
 
 export default configureStore({
     reducer:{
-        chatList: chatListReducer
+        chatList: chatListReducer,
+        messageList: messageListReducer,
     },
 })
