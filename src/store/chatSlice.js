@@ -1,9 +1,9 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 
 export const fetchChats = createAsyncThunk(
-    'chats/FETCHCHATS',
+    'chats/fetchchatlist',
     async function () {
-        const response = await fetch('http://localhost:3000/Chats');
+        const response = await fetch('http://localhost:3003/Chats');
 
         const data = await response.json();
 
