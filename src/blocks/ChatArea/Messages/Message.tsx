@@ -1,11 +1,29 @@
 // @ts-ignore
 import s from "./Message.module.css"
+import {Skeleton} from "../../../components/sceleton/Sceleton";
 
 type Props = {
     text: string;
     isMine: boolean;
     date: number;
 };
+
+export const MessageLoader = () => (
+    <>
+        <div className={`${s.messageLine} ${s.mine} ${s.loading}`}>
+                <Skeleton/>
+            <div className={`${s.messageDate} ${s.loading}`}>
+                <Skeleton/>
+            </div>
+        </div>
+        <div className={`${s.messageLine} ${s.notMine} ${s.loading}`}>
+            <Skeleton/>
+            <div className={`${s.messageDate} ${s.loading}`}>
+                <Skeleton/>
+            </div>
+        </div>
+    </>
+)
 
 export const Message = (props: Props) => {
 

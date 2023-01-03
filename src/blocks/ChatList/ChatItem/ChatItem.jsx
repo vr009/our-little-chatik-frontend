@@ -8,7 +8,7 @@ import {Skeleton} from "../../../components/sceleton/Sceleton";
 export const LoadingChatItem = () => {
 	return(
 		<div className={s.info}>
-			<div class={s.logo}>
+			<div className={s.logo}>
 				<Skeleton/>
 			</div>
 			<div>

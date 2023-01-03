@@ -7,3 +7,6 @@
     transition: width .25s ease;
     overflow: scroll;
 }
+.error {
+    margin: 16px;
+}

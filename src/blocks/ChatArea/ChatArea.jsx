@@ -1,51 +1,46 @@
 import s from "./ChatArea.module.css"
 import { useParams } from "react-router-dom";
 import {useCallback, useEffect, useRef, useState} from "react";
-import {getMessages} from "../../mocks/serviceMocks.js";
+import { v4 as createId } from "uuid"
 import Messages from "./Messages/Messages";
 import ChatHeader from "./ChatHeader/ChatHeader";
+import {addMessage} from "../../store/messagesSlice.js";
+import {useDispatch} from "react-redux";
 
 const YOUR_ID = "337295eb-cbde-479c-a4ee-683019adc838";
 
 export default function ChatArea() {
-    const params = useParams()
 
-    const [messages, setMessages] = useState(null)
-    const [isReady, setReady] = useState(false);
+    const dispatch = useDispatch();
 
-    const inputRef = useRef(null);
+    const [messageValue, setMessageValue] = useState('');
+
+    const params = useParams();
+
     const containerRef = useRef(null);
 
-    useEffect( () => {
-        setReady(false);
-        const current = params.userId
-        getMessages(current)
-            .then(data => {
-                setMessages(data);
-                setReady(true);
-        })
-    },[params.userId])
+    const messageChange = useCallback((event)=>{
+        setMessageValue(event.target.value)
+    },[])
 
     const handleAddMessageClick = useCallback(() => {
-        if (!inputRef.current) {
-            return;
-        }
-        const message = inputRef.current.value;
-        if (!message) {
+        if (!messageValue) {
             return;
         }
 
         let currentMessage = {
-            "Payload": message,
+            "Payload": messageValue,
             "SenderID": YOUR_ID,
-            "CreatedAt": new Date().getTime()
+            "CreatedAt": new Date().getTime(),
+            "ChatID": params.id,
+            "MsgID": createId(),
         }
 
-        console.log(currentMessage)
+        dispatch(addMessage(currentMessage))
 
-        setMessages((messages) => [...messages, currentMessage]);
-        inputRef.current.value = "";
-    }, []);
+        setMessageValue('');
+
+    }, [messageValue]);
 
 
     const handleInputKeyPress = ((event) => {
@@ -54,28 +49,23 @@ export default function ChatArea() {
             }
         });
 
-    if (messages === 0) {
-        return <h3 style={{margin: "auto"}}>Сообщений пока нет :( </h3>;
-    }
 
     return (
         <>
             <div className={s.main}>
-                <ChatHeader name={params.userId}/>
+                <ChatHeader id={params.userId}/>
                 <div className={s.messages} ref={containerRef}>
-                    {
-                        isReady ? <Messages
-                            messageItems={messages}
+                    <Messages
+                            id={params.userId}
                             container={containerRef.current}
-                        /> : <h3 style={{margin: 'auto'}}>Загрузка информации...</h3>
-                    }
-
+                        />
                 </div>
                 <div className={s.inputs}>
                     <input
+                        value={messageValue}
+                        onChange={messageChange}
                         className={s.messageInput}
                         placeholder="сообщение"
-                        ref={inputRef}
                         onKeyUp={handleInputKeyPress}
                     />
                     <button className={s.button} onClick={handleAddMessageClick}>
