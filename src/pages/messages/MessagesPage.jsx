@@ -2,29 +2,43 @@ import s from './messages.module.css'
 import chatIcon from "../../assets/newChat.svg"
 import ChatBoard from "../../blocks/ChatList/ChatBoard/ChatBoard";
 import { Outlet } from "react-router-dom";
-import {useEffect, useRef, useState} from "react";
+import {useCallback, useEffect, useRef, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {searchChats} from "../../store/chatListSlice.js";
+import Modal from "../../components/modal/Modal.jsx";
+import {toggleVisible} from "../../store/modalSlice.js";
 
 
 
-export default function MessagesPage(props) {
+export default function MessagesPage() {
 
-    const chatList = useSelector((state) => state.chatList.chats);
+    const isModalVisible = useSelector(state => state.modal.isVisible)
 
     const dispatch = useDispatch();
+
+    const handleAddChat = useCallback(()=> {
+        dispatch(toggleVisible())
+    })
 
     const searchRef = useRef('');
 
     function handleChange() {
-        // if (searchRef.current.value !== '') {
-        //     dispatch(searchChats(searchRef.current.value))
-        // }
         dispatch(searchChats(searchRef.current.value))
     }
 
     return (
         <div className={s.layout}>
+            <Modal
+                active={isModalVisible}
+                children={
+                    <input
+                        className={s.messageInput}
+                        placeholder="Найти чат"
+                        ref={searchRef}
+                        onChange={handleChange}
+                    />
+                }
+            />
             <div className={s.chatlist}>
                 <div className={s.inputs}>
                     <div className={s.сontent}>
@@ -34,7 +48,7 @@ export default function MessagesPage(props) {
                             ref={searchRef}
                             onChange={handleChange}
                         />
-                        <div className={s.addIcon}>
+                        <div className={s.addIcon} onClick={handleAddChat}>
                             <img src={chatIcon}/>
                         </div>
                     </div>
