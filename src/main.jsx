@@ -25,7 +25,7 @@ const router = createBrowserRouter([
         errorElement: <ErrorPage />,
     },
     {
-        path: "auth",
+        path: "login",
         element: <Root isRegistration={false}/>,
         errorElement: <ErrorPage />,
     },

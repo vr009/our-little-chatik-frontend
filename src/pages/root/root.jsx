@@ -1,23 +1,41 @@
 import s from './root.module.css'
-import Button from "../../components/button/Button";
 import {useEffect, useState} from "react";
-import {fetchFunc} from "../../utils/utils.ts";
-import { redirect } from "react-router-dom";
 import {useNavigate} from "react-router";
+import Button from "../../components/Button/Button";
+import {useDispatch, useSelector} from "react-redux";
+import {setError, signin, signup} from "../../store/userSlice.ts";
 
-const CREATE_USER_API_URL = 'http://localhost:8080/api/gateway/signup';
-const AUTH_USER_API_URL = '';
+const CREATE_USER_API_URL = 'http://localhost:1337/api/auth/local/register';
+const AUTH_USER_API_URL = 'http://localhost:1337/api/auth/local';
 
-export default function Root(props) {
+const FormPage = (props) => {
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+
+    const dispatch = useDispatch();
+
+    const isAuth = useSelector((state) => state.user.isAuth);
+    const error = useSelector((state) => state.user.error);
+    //
+    useEffect(()=>{
+        console.log(props.isRegistration)
+        // if (isAuth) {
+        //     navigate('/')
+        // }
+    })
+    useEffect(()=>{
+        dispatch(setError(false))
+        // if (isAuth) {
+        //     navigate('/')
+        // }
+    },[navigate])
 
     let url = (props.isRegistration ?  CREATE_USER_API_URL : AUTH_USER_API_URL)
 
-    const [nickname, setNickname] = useState('')
+    const [name, setName] = useState('')
+    const [surname, setSurname] = useState('')
     const [password, setPassword] = useState('')
-    const [email, setEmail] = useState('')
-    const [error, setError] = useState(false)
+    const [nickname, setNickname] = useState('')
 
     function handleChange (setFunction,event) {
         event.preventDefault()
@@ -26,68 +44,73 @@ export default function Root(props) {
 
     function handleSubmit (event) {
         event.preventDefault()
-        let body = JSON.stringify({
-            nickname: nickname,
-            password: password
-        })
-        fetchFunc(url,"POST", body)
-            .then(response => {
-                if (!response.ok) throw Error(response.statusText);
-                return response.json();
-            })
-            .then(data => console.log(data))
-            .then(() => {
-                navigate("/messages")
-            })
-            .catch((error) => {
-                setError(true)
-                console.log(error)
-            });
-        console.log(nickname,';',password,';',email)
+        if (!props.isRegistration) {
+            dispatch(signin({
+                nickname: nickname,
+                password: password
+            }))
+        } else {
+            dispatch(signup({
+                nickname: nickname,
+                password: password,
+                name: name,
+                surname: surname
+            }))
+        }
     }
 
-    const heading =  (props.isRegistration) ? 'Привет, новый пользователь' : 'Привет, зарегистрированный пользователь';
+    const heading =  (props.isRegistration) ? 'Sign in' : 'Log in';
     return (
         <>
             <div className={s.main} id="welcome">
                 <h1 className={s.heading}>{heading}</h1>
-                <div className={s.form}>
-                    <form id="welcome-form" onSubmit={handleSubmit}>
-                        <input
-                            placeholder="Nickname"
-                            type="text"
-                            onChange={(e) => handleChange(setNickname,e)}
-                        />
+                <form id="welcome-form" onSubmit={handleSubmit}>
 
-                        {props.isRegistration && (
+                    <input
+                        placeholder="Your nickname"
+                        type="text"
+                        onChange={(e) => handleChange(setNickname,e)}
+                    />
+
+                    {props.isRegistration && (
+                        <>
                             <input
-                                placeholder="Your email"
-                                type="email"
-                                onChange={(e) => handleChange(setEmail,e)}
+                                placeholder="Your name"
+                                type="text"
+                                onChange={(e) => handleChange(setName,e)}
                             />
-                        )}
+                            <input
+                                placeholder="Your surname"
+                                type="text"
+                                onChange={(e) => handleChange(setSurname,e)}
+                            />
+                        </>
+                    )}
 
-                        <input
-                            placeholder="Password"
-                            type="password"
-                            onChange={(e) => handleChange(setPassword,e)}
-                        />
-                        <div className={`${s.alert} ${ !error ? s.disabled : ''}`}>
-                            <p> Упс! Что-то пошло не так </p>
-                        </div>
-                        <button
-                            type="submit"
-                        >
-                            {!props.isRegistration && (
-                                "Sign in"
-                            )}
-                            {props.isRegistration && (
-                                "Log in"
-                            )}
-                        </button>
-                    </form>
-                </div>
+                    <input
+                        placeholder="Password"
+                        type="password"
+                        onChange={(e) => handleChange(setPassword,e)}
+                    />
+                    <div className={`${s.alert} ${ !error ? s.disabled : ''}`}>
+                        <p> There is an error: </p>
+                        <p> {error} </p>
+                    </div>
+                    <Button>
+                        {props.isRegistration ? "Sign in" : "Log in" }
+                    </Button>
+                    <div className={s.additional}>
+                        {props.isRegistration && (
+                            <> Already have an account? <a onClick={()=>{navigate('/login')}}> Log in </a> </>
+                        )}
+                        {!props.isRegistration && (
+                            <> Have not got an account? <a onClick={()=>{navigate('/reg')}}> Sign in </a> </>
+                        )}
+                    </div>
+                </form>
             </div>
         </>
     );
 }
+
+export default FormPage

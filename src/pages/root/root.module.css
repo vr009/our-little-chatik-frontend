@@ -7,14 +7,16 @@
     flex-direction: column;
 }
 
-.form {
+
+form {
+    width: 450px;
     display: flex;
     flex-direction: column;
-    width: 450px;
 }
 
-.form input {
-    width: 100%;
+form input {
+    font-size: 16px;
+    padding: 10px;
     margin: 0 0 15px;
 }
 
@@ -34,5 +36,10 @@
 .disabled {
     display: none;
     margin: 0 0 15px;
+}
+
+.additional {
+    text-align: center;
+    margin-top: 10px;
 }
 
