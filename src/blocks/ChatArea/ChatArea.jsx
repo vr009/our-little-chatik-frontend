@@ -6,6 +6,7 @@ import Messages from "./Messages/Messages";
 import ChatHeader from "./ChatHeader/ChatHeader";
 import {addMessage} from "../../store/messagesSlice.js";
 import {useDispatch} from "react-redux";
+import Modal from "../../components/modal/Modal.jsx";
 
 const YOUR_ID = "337295eb-cbde-479c-a4ee-683019adc838";
 

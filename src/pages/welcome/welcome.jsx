@@ -1,6 +1,7 @@
 import s from './welcome.module.css'
 import {ButtonLink} from "../../components/button/Button";
 import {Link} from "react-router-dom";
+import Modal from "../../components/modal/Modal.jsx";
 
 export default function Welcome() {
     const heading =  'Привет!';
@@ -9,7 +10,13 @@ export default function Welcome() {
     return (
         <>
             <div className={s.main} id="welcome">
-                <h1 className={s.heading}>{heading}</h1>
+                {/*<Modal*/}
+                {/*    active={true}*/}
+                {/*    children={*/}
+                {/*        <h1 className={s.heading}>{heading}</h1>*/}
+                {/*    }*/}
+                {/*/>*/}
+                {/*<h1 className={s.heading}>{heading}</h1>*/}
                 <ButtonLink
                     href={'reg'}
                     children={'Регистрация'}

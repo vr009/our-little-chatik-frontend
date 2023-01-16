@@ -13,11 +13,6 @@ export const Loader = () => (
         <MessageLoader/>
         <MessageLoader/>
         <MessageLoader/>
-        <MessageLoader/>
-        <MessageLoader/>
-        <MessageLoader/>
-        <MessageLoader/>
-        <MessageLoader/>
     </>
 )
 

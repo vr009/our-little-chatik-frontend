@@ -21,3 +21,14 @@ body {
 }
 
 
+a {
+  cursor: pointer;
+  color: #ffdd2d;
+}
+
+a:hover {
+  cursor: pointer;
+  color: #fcc521;
+}
+
+
