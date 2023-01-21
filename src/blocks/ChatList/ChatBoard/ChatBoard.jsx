@@ -39,6 +39,7 @@ export default function ChatBoard () {
                                 lastMessage={element.lastMessage}
                                 userId={element.id}
                                 key={element.id}
+                                type={'Chatboard'}
                             />
                     )
                 )

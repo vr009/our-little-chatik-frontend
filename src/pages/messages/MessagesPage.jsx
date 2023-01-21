@@ -7,12 +7,17 @@ import {useDispatch, useSelector} from "react-redux";
 import {searchChats} from "../../store/chatListSlice.js";
 import Modal from "../../components/modal/Modal.jsx";
 import {toggleVisible} from "../../store/modalSlice.js";
+import Input from "../../components/input/Input.tsx";
+import FindUserPage from "../findUser/findUserPage";
 
 
 
 export default function MessagesPage() {
 
     const isModalVisible = useSelector(state => state.modal.isVisible)
+
+    const [query, setQuery] = useState('');
+
 
     const dispatch = useDispatch();
 
@@ -22,30 +27,25 @@ export default function MessagesPage() {
 
     const searchRef = useRef('');
 
-    function handleChange() {
-        dispatch(searchChats(searchRef.current.value))
-    }
+    const handleChange = useCallback((event)=>{
+        setQuery(event.target.value)
+        dispatch(searchChats(event.target.value))
+    },[])
 
     return (
         <div className={s.layout}>
             <Modal
                 active={isModalVisible}
-                children={
-                    <input
-                        className={s.messageInput}
-                        placeholder="Найти чат"
-                        ref={searchRef}
-                        onChange={handleChange}
-                    />
-                }
-            />
+            >
+                <FindUserPage/>
+            </Modal>
             <div className={s.chatlist}>
                 <div className={s.inputs}>
                     <div className={s.сontent}>
-                        <input
+                        <Input
                             className={s.messageInput}
                             placeholder="Найти чат"
-                            ref={searchRef}
+                            value={query}
                             onChange={handleChange}
                         />
                         <div className={s.addIcon} onClick={handleAddChat}>

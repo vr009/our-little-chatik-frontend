@@ -1,0 +1,20 @@
+.inputs {
+    display: flex;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.inputs input {
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.inputs button {
+    margin-left: 5px;
+    margin-right: 15px;
+}
+
+.board {
+    max-height: 450px;
+    overflow-y: scroll;
+}

@@ -7,6 +7,8 @@ import ChatHeader from "./ChatHeader/ChatHeader";
 import {addMessage} from "../../store/messagesSlice.js";
 import {useDispatch} from "react-redux";
 import Modal from "../../components/modal/Modal.jsx";
+import Input from "../../components/input/Input.tsx";
+import Button from "../../components/button/Button.jsx";
 
 const YOUR_ID = "337295eb-cbde-479c-a4ee-683019adc838";
 
@@ -62,16 +64,15 @@ export default function ChatArea() {
                         />
                 </div>
                 <div className={s.inputs}>
-                    <input
+                    <Input
                         value={messageValue}
                         onChange={messageChange}
-                        className={s.messageInput}
                         placeholder="сообщение"
                         onKeyUp={handleInputKeyPress}
                     />
-                    <button className={s.button} onClick={handleAddMessageClick}>
+                    <Button className={s.button} onClick={handleAddMessageClick}>
                         Отправить
-                    </button>
+                    </Button>
                 </div>
             </div>
         </>

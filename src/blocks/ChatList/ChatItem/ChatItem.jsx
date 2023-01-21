@@ -26,6 +26,8 @@ export const LoadingChatItem = () => {
 
 export default function ChatItem(props) {
 	return (
+		<>
+		{/*(props.type === "Chatboard" && "ff")*/}
 			<Link to={`/messages/${props.userId}`} className={s.info}>
 				<Picture
 					src={props.avatar}
@@ -41,5 +43,6 @@ export default function ChatItem(props) {
 					</div>
 				</div>
 			</Link>
+		</>
 	);
 };

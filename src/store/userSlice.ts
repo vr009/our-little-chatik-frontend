@@ -3,8 +3,10 @@ import {IUser} from "../models/IUser";
 import {loginRequest, registrationRequest} from "../models/request/AuthRequest";
 import AuthService from "../service/AuthService";
 
+
 export const signin  = createAsyncThunk(
     'user/signin',
+    // @ts-ignore
     async function (arg: loginRequest,{dispatch}) {
         try {
             const response = AuthService.signin(arg.nickname, arg.password)
@@ -26,7 +28,8 @@ export const signin  = createAsyncThunk(
 );
 
 export const signup  = createAsyncThunk(
-    'user/signin',
+    'user/signup',
+    // @ts-ignore
     async function (arg: registrationRequest,{dispatch}) {
         try {
             const response = AuthService.signup(arg.nickname, arg.password, arg.name, arg.surname)

@@ -19,14 +19,13 @@
 /*}*/
 
 .inputs {
-    padding: 12px;
     display: flex;
     justify-content: flex-end;
     width: 100%;
+    background: #222222;
 }
 
 .messageInput {
-    padding: 12px 20px;
     border-radius: 8px;
     border: none;
     flex-grow: 6;
@@ -34,13 +33,12 @@
     margin: 0 5px 0 10px;
 }
 
-.button {
-    border-radius: 8px;
-    border: none;
-    background-color: #00796b;
-    color: white;
-    flex-grow: 1;
-    margin: 0 10px 0 5px;
+.inputs input {
+    margin: 5px 5px 5px 10px;
+}
+
+.inputs button {
+    margin: 5px 10px 5px 0;
 }
 
 .error {
