@@ -1,6 +1,6 @@
-import s from "./Input.module.css"
 import {MutableRefObject} from "react";
 import * as React from "react";
+import s from './Input.module.css';
 
 interface IInput extends HTMLInputElement {
 }

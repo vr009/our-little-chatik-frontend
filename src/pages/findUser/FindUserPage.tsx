@@ -4,10 +4,11 @@ import ChatItem, {LoadingChatItem} from "../../blocks/ChatList/ChatItem/ChatItem
 import s from "./FindUserPage.module.css"
 import {useCallback, useState} from "react";
 import {useDispatch} from "react-redux";
+import {searchContacts} from "../../store/contactSlice";
 
 export default function FindUserPage (){
 
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
     const [userQuery, setUserQuery] = useState('');
 
@@ -15,8 +16,17 @@ export default function FindUserPage (){
         setUserQuery(event.target.value)
 
         // тут добавляем логику для поиска через debounce
-        // dispatch(getUsers(userQuery))
-    },[])
+        // @ts-ignore
+        dispatch(searchContacts(event.target.value));
+    },[dispatch,userQuery])
+
+    // const handleChange = useCallback((event) => {
+    //     setUserQuery(event.target.value)
+    //
+    //     // тут добавляем логику для поиска через debounce
+    //     // @ts-ignore
+    //     dispatch(searchContacts(event.target.value));
+    // },[dispatch,userQuery])
 
     return (
         <>
@@ -26,9 +36,6 @@ export default function FindUserPage (){
                     placeholder="Найти пользователя"
                     onChange={handleChange}
                 />
-                {/*<Button>*/}
-                {/*    Поиск*/}
-                {/*</Button>*/}
             </div>
             <div className={s.board}>
                 <LoadingChatItem/>
