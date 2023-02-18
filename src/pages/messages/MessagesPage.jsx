@@ -11,6 +11,7 @@ import Input from "../../components/input/Input.tsx";
 import FindUserPage from "../findUser/findUserPage";
 import ChatListService from "../../service/ChatListService.ts";
 import {useNavigate} from "react-router";
+import Header from "../../blocks/Header/Header";
 
 
 export default function MessagesPage() {
@@ -45,35 +46,39 @@ export default function MessagesPage() {
     })
 
     return (
-        <div className={s.layout}>
-            <Modal
-                active={isModalVisible}
-            >
-                <FindUserPage/>
-            </Modal>
-            <div className={s.chatlist}>
-                <div className={s.inputs}>
-                    <div className={s.сontent}>
-                        <Input
-                            className={s.messageInput}
-                            placeholder="Найти чат"
-                            value={query}
-                            onChange={handleChange}
-                        />
-                        <div className={s.addIcon} onClick={handleAddChat}>
-                            <img src={chatIcon}/>
+        <>
+            <Header/>
+            <div className={s.layout}>
+                {isModalVisible &&
+                    <Modal active={isModalVisible} >
+                        <FindUserPage/>
+                    </Modal>
+                }
+
+                <div className={s.chatlist}>
+                    <div className={s.inputs}>
+                        <div className={s.сontent}>
+                            <Input
+                                className={s.messageInput}
+                                placeholder="Найти чат"
+                                value={query}
+                                onChange={handleChange}
+                            />
+                            <div className={s.addIcon} onClick={handleAddChat}>
+                                <img src={chatIcon}/>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <ChatBoard/>
+                    <ChatBoard/>
 
-            </div>
-            <div className={s.chatContent}>
-                <div className={s.chatarea}>
-                    <Outlet/>
+                </div>
+                <div className={s.chatContent}>
+                    <div className={s.chatarea}>
+                        <Outlet/>
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 }

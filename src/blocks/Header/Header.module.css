@@ -1,0 +1,22 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 60px;
+    border-right: solid #333;
+    border-bottom: solid #333;
+    border-left: solid #333;
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    padding-right: 10px;
+}
+
+.username {
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+}

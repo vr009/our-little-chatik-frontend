@@ -4,7 +4,6 @@ import {Link} from "react-router-dom";
 
 
 export default function Button(props){
-
     return(
         <button
             className={s.button}
@@ -17,7 +16,6 @@ export default function Button(props){
 }
 
 export const ButtonLink = (props) => {
-
     return(
         <Link to={props.href} className={s.button}>
             <span className={s.text}>{props.children}</span>

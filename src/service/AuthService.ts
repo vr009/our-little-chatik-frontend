@@ -15,6 +15,6 @@ export default class AuthService {
 
     // @ts-ignore
     static async logut():Promise<AxiosResponse<any>> {
-        return api.post<any>('/auth/logout',{})
+        return api.delete<any>('/auth/logout',{})
     }
 }
