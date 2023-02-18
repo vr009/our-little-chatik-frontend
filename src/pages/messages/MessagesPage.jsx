@@ -9,6 +9,8 @@ import Modal from "../../components/modal/Modal.jsx";
 import {toggleVisible} from "../../store/modalSlice.js";
 import Input from "../../components/input/Input.tsx";
 import FindUserPage from "../findUser/findUserPage";
+import ChatListService from "../../service/ChatListService.ts";
+import {useNavigate} from "react-router";
 
 
 
@@ -18,6 +20,7 @@ export default function MessagesPage() {
 
     const [query, setQuery] = useState('');
 
+    const navigate = useNavigate();
 
     const dispatch = useDispatch();
 
@@ -25,12 +28,22 @@ export default function MessagesPage() {
         dispatch(toggleVisible())
     })
 
-    const searchRef = useRef('');
-
     const handleChange = useCallback((event)=>{
         setQuery(event.target.value)
         dispatch(searchChats(event.target.value))
     },[])
+
+    useEffect(() => {
+        ChatListService.getList()
+            .then(data =>{
+                console.log('красавчик')
+                console.log(data)
+            })
+            .catch(e => {
+                navigate('/')
+                console.log(e)
+            })
+    })
 
     return (
         <div className={s.layout}>

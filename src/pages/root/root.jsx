@@ -3,10 +3,8 @@ import {useEffect, useState} from "react";
 import {useNavigate} from "react-router";
 import Button from "../../components/Button/Button";
 import {useDispatch, useSelector} from "react-redux";
-import {setError, signin, signup} from "../../store/userSlice.ts";
-
-const CREATE_USER_API_URL = 'http://localhost:1337/api/auth/local/register';
-const AUTH_USER_API_URL = 'http://localhost:1337/api/auth/local';
+import {setError, login, signup} from "../../store/userSlice.ts";
+import ChatListService from "../../service/ChatListService.ts";
 
 const FormPage = (props) => {
 
@@ -18,19 +16,18 @@ const FormPage = (props) => {
     const error = useSelector((state) => state.user.error);
     //
     useEffect(()=>{
-        console.log(props.isRegistration)
-        // if (isAuth) {
-        //     navigate('/')
-        // }
+            dispatch(setError(false))
+            if (isAuth) {
+                navigate('/messages')
+            }
     })
+
     useEffect(()=>{
         dispatch(setError(false))
-        // if (isAuth) {
-        //     navigate('/')
-        // }
+        if (isAuth) {
+            navigate('/messages')
+        }
     },[navigate])
-
-    let url = (props.isRegistration ?  CREATE_USER_API_URL : AUTH_USER_API_URL)
 
     const [name, setName] = useState('')
     const [surname, setSurname] = useState('')
@@ -45,7 +42,7 @@ const FormPage = (props) => {
     function handleSubmit (event) {
         event.preventDefault()
         if (!props.isRegistration) {
-            dispatch(signin({
+            dispatch(login({
                 nickname: nickname,
                 password: password
             }))
@@ -59,7 +56,7 @@ const FormPage = (props) => {
         }
     }
 
-    const heading =  (props.isRegistration) ? 'Sign in' : 'Log in';
+    const heading =  (props.isRegistration) ? 'Sign up' : 'Log in';
     return (
         <>
             <div className={s.main} id="welcome">
@@ -97,14 +94,14 @@ const FormPage = (props) => {
                         <p> {error} </p>
                     </div>
                     <Button>
-                        {props.isRegistration ? "Sign in" : "Log in" }
+                        {props.isRegistration ? "Sign up" : "Log in" }
                     </Button>
                     <div className={s.additional}>
                         {props.isRegistration && (
                             <> Already have an account? <a onClick={()=>{navigate('/login')}}> Log in </a> </>
                         )}
                         {!props.isRegistration && (
-                            <> Have not got an account? <a onClick={()=>{navigate('/reg')}}> Sign in </a> </>
+                            <> Have not got an account? <a onClick={()=>{navigate('/reg')}}> Sign up </a> </>
                         )}
                     </div>
                 </form>

@@ -4,22 +4,24 @@ import {loginRequest, registrationRequest} from "../models/request/AuthRequest";
 import AuthService from "../service/AuthService";
 
 
-export const signin  = createAsyncThunk(
-    'user/signin',
+export const login  = createAsyncThunk(
+    'user/login',
     // @ts-ignore
     async function (arg: loginRequest,{dispatch}) {
         try {
-            const response = AuthService.signin(arg.nickname, arg.password)
-                .catch((e:any) => {
-                    dispatch(setError(e.message))
-                })
-                    //@ts-ignore
-                    localStorage.setItem('token', response.data.jwt);
+            AuthService.signin(arg.nickname, arg.password)
+                .then(response => {
                     dispatch(setAuth(true));
                     //@ts-ignore
                     dispatch(setUser(response.data.user))
                     dispatch(setError(null))
-
+                })
+                .catch((e:any) => {
+                    dispatch(setError(e.message))
+                    console.log(e);
+                })
+                //@ts-ignore
+                // localStorage.setItem('token', response.data.jwt);
         } catch (e:any) {
             dispatch(setError(e.response.data.error.message))
             console.log(e);
@@ -32,20 +34,21 @@ export const signup  = createAsyncThunk(
     // @ts-ignore
     async function (arg: registrationRequest,{dispatch}) {
         try {
-            const response = AuthService.signup(arg.nickname, arg.password, arg.name, arg.surname)
+            AuthService.signup(arg.nickname, arg.password, arg.name, arg.surname)
+                .then(response => {
+                    dispatch(setAuth(true));
+                    //@ts-ignore
+                    dispatch(setUser(response.data.user))
+                    dispatch(setError(false));
+                    localStorage.setItem('token', response.data.jwt);
+                })
                 .catch((e:any) => {
                     dispatch(setError(e.message))
                 })
             //@ts-ignore
-            localStorage.setItem('token', response.data.jwt);
-            dispatch(setAuth(true));
-            //@ts-ignore
-            dispatch(setUser(response.data.user))
-            dispatch(setError(null))
-
         } catch (e:any) {
-            dispatch(setError(e.response.data.error.message))
-            console.log(e);
+            // dispatch(setError(e.response.data.error.message))
+            // console.log(e);
         }
     }
 );

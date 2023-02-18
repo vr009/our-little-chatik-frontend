@@ -5,7 +5,7 @@ import http from "../http";
 
 export default class ChatListService {
     // @ts-ignore
-    static async search(name:string):Promise<AxiosResponse<any>> {
-        return api.get<any>('/search',{params: {Name: name}});
+    static async getList():Promise<AxiosResponse<any>> {
+        return api.get<any>('/chat/list');
     }
 }
