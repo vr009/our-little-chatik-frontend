@@ -13,7 +13,6 @@ import ChatListService from "../../service/ChatListService.ts";
 import {useNavigate} from "react-router";
 
 
-
 export default function MessagesPage() {
 
     const isModalVisible = useSelector(state => state.modal.isVisible)

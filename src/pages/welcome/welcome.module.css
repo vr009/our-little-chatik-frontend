@@ -5,17 +5,15 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    grid-gap: 20px;
 }
 
-.form {
+.buttons {
     display: flex;
-    flex-direction: column;
-    width: 450px;
-}
-
-.form input {
-    width: 100%;
-    margin: 0 0 15px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    grid-gap: 20px;
 }
 
 .heading {

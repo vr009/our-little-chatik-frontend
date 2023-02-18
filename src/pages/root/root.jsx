@@ -14,7 +14,7 @@ const FormPage = (props) => {
 
     const isAuth = useSelector((state) => state.user.isAuth);
     const error = useSelector((state) => state.user.error);
-    //
+
     useEffect(()=>{
             dispatch(setError(false))
             if (isAuth) {
