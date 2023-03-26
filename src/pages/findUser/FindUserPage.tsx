@@ -13,7 +13,8 @@ export default function FindUserPage (){
     const dispatch = useDispatch();
 
     // const isModalVisible = useSelector(state => state.modal.isVisible)
-    const searchingStatus = useSelector(state => state.contacts.status)
+    const searchingResult = useSelector(state => state.contacts.contacts)
+    const searchingStatus = useSelector(state => state.contacts.status);
 
     const [userQuery, setUserQuery] = useState('');
 
@@ -54,6 +55,24 @@ export default function FindUserPage (){
                             Ошибка загрузки
                         </p>
                     </>
+                }
+                { searchingStatus === 'Fulfilled' && 
+                    searchingResult && 
+                        searchingResult.map((element) => (
+                            <ChatItem
+                                avatar={element.avatar}
+                                name={element.name}
+                                surname={element.surname}
+                                lastMessage={element.lastMessage}
+                                userId={element.id}
+                                key={element.id}
+                                // type={'Chatboard'}
+                            />
+                        ))
+                    (!searchingResult) &&
+                    <p className={`${s.title} ${s.alert}`}>
+                        Ничего не найдено
+                    </p>
                 }
             </div>
         </div>
