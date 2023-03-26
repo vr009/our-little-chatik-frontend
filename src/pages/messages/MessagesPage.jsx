@@ -36,8 +36,8 @@ export default function MessagesPage() {
     useEffect(() => {
         ChatListService.getList()
             .then(data =>{
-                console.log('красавчик')
-                console.log(data)
+                console.log('Залогинен')
+                // console.log(data)
             })
             .catch(e => {
                 navigate('/')

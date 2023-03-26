@@ -4,20 +4,38 @@ import AuthService from "../../service/AuthService";
 import {useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {setAuth} from "../../store/userSlice";
+import React, { useEffect, useState } from "react";
+import api from "../http";
+import { LoadingNameSurname } from "../../blocks/ChatList/ChatItem/ChatItem.jsx"
 
 export default function Header () {
 
     const navigate = useNavigate()
     const dipatch = useDispatch()
 
+    const [user, setUser] = useState(null)
+
     // const isAuth = useSelector((state) => state.user.isAuth);
+
+    useEffect(()=>{
+        AuthService.whoAmI()
+            .then((data) => {
+                setUser({name: data.name, surname: data.surname});
+            })
+            .catch((e) => {
+                console.log(e);
+                setTimeout(()=>{
+                    setUser({name: 'Не получилось загрузить данные о пользователе'});
+                }, 1000)
+            })
+    },[])
 
     const logoutHandler = () =>{
         alert('logout')
         AuthService.logut()
             .then(() => {
                 alert('You have logged out');
-                dipatch(setAuth(false))
+                dipatch(setAuth(false));
                 navigate('/')
             })
             .catch(e => {
@@ -25,11 +43,13 @@ export default function Header () {
             })
     }
 
+    console.log(user)
+
     return (
         <div className={s.header}>
-            <>
                 <div className={s.username}>
-                    <p> username  </p>
+                    {!user && <LoadingNameSurname/>}
+                    {user && <p>{user.name} {user.surname}</p>}
                 </div>
                 <div className={s.controls}>
                     <Button
@@ -37,7 +57,6 @@ export default function Header () {
                         children={'Log out'}
                     />
                 </div>
-            </>
         </div>
     )
 }

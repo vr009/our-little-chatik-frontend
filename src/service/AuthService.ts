@@ -17,4 +17,9 @@ export default class AuthService {
     static async logut():Promise<AxiosResponse<any>> {
         return api.delete<any>('/auth/logout',{})
     }
+
+    static async whoAmI():Promise<AxiosResponse<any>> {
+        return api.get<any>('/user/me')
+    }
+
 }

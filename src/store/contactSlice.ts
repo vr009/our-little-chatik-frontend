@@ -10,17 +10,23 @@ export const searchContacts  = createAsyncThunk(
     // @ts-ignore
     debounce(async function (arg: string,{dispatch}) {
         console.log(arg)
+        dispatch(setStatus('Pending'));
         try {
-            const response = ChatListService.search(arg)
-                .catch((e:any) => {
-                    dispatch(setError(e.message))
-                })
+            const response = ChatListService.searchContacts(arg)
+                .then(()=> {
                     //@ts-ignore
                     dispatch(setContacts(response.data.user))
                     dispatch(setError(null))
+                    dispatch(setStatus('Fulfilled'));
+                })
+                .catch((e:any) => {
+                    dispatch(setError(e.message))
+                    dispatch(setStatus('Error'));
+                })
 
         } catch (e:any) {
-            dispatch(setError(e.response.data.error.message))
+            dispatch(setError(e.response.data.error.message));
+            dispatch(setStatus('Error'));
             console.log(e);
         }
     }, 300)
@@ -42,9 +48,12 @@ const contactSlice = createSlice({
         setContacts(state, action) {
             state.contacts = action.payload
         },
+        setStatus(state, action) {
+            state.status = action.payload
+        },
     }
 })
 
-export const {setError,setContacts} = contactSlice.actions;
+export const {setError,setContacts,setStatus} = contactSlice.actions;
 
 export default contactSlice.reducer

@@ -5,6 +5,15 @@ import s from './ChatItem.module.css';
 import Picture from "../../../components/picture/Picture";
 import {Skeleton} from "../../../components/sceleton/Sceleton";
 
+export const LoadingNameSurname = () => {
+	return (
+		<div className={`${s.name} ${s.loading}`}>
+			<Skeleton/>
+			<Skeleton/>
+		</div>
+	)
+}
+
 export const LoadingChatItem = () => {
 	return(
 		<div className={s.info}>
@@ -12,10 +21,7 @@ export const LoadingChatItem = () => {
 				<Skeleton/>
 			</div>
 			<div>
-				<div className={`${s.name} ${s.loading}`}>
-					<Skeleton/>
-					<Skeleton/>
-				</div>
+				<LoadingNameSurname/>
 				<div className={`${s.message} ${s.loading}`}>
 					<Skeleton/>
 				</div>

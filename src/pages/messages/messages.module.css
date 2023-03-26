@@ -37,7 +37,7 @@
     display: flex;
     max-width: 1200px;
     margin: 0 auto;
-    height: 100vh;
+    height: calc(100vh - 60px);
     border-right: solid #333;
     border-left: solid #333;
 }
