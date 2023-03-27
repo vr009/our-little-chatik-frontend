@@ -10,26 +10,42 @@ export const searchContacts  = createAsyncThunk(
     // @ts-ignore
     debounce(async function (arg: string,{dispatch}) {
         console.log(arg)
+        if (arg === '') {
+            dispatch(setError(null));
+            dispatch(setStatus(null));
+            return
+        }
         dispatch(setStatus('Pending'));
         try {
-            const response = ChatListService.searchContacts(arg)
-                .then(()=> {
+            ChatListService.searchContacts(arg)
+                .then((response)=> {
                     //@ts-ignore
-                    dispatch(setContacts(response.data.user))
-                    dispatch(setError(null))
-                    dispatch(setStatus('Fulfilled'));
+                    // dispatch(setContacts(response.data.user))
+                    if (response.data.length != 0) {
+                        dispatch(setError(null))
+                        dispatch(setStatus('Fulfilled'));
+                        console.log(response.data);
+                        console.log('все норм');
+                    } else {
+                        console.log('Не найдено');
+                        dispatch(setStatus('NotFound'));
+                    }
                 })
                 .catch((e:any) => {
                     dispatch(setError(e.message))
                     dispatch(setStatus('Error'));
+                    
+                    console.log('ошибка 2');
+                    console.log(e);
                 })
 
         } catch (e:any) {
             dispatch(setError(e.response.data.error.message));
             dispatch(setStatus('Error'));
             console.log(e);
+            console.log('ошибка 3');
         }
-    }, 300)
+    }, 500)
 );
 
 const initialState = {

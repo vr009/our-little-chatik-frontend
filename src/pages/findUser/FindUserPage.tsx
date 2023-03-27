@@ -56,6 +56,14 @@ export default function FindUserPage (){
                         </p>
                     </>
                 }
+                { searchingStatus === 'NotFound' && 
+                    <>
+                        <p className={`${s.title}`}>
+                            К сожалению, таких у нас нет
+                            ¯\_(ツ)_/¯
+                        </p>
+                    </>
+                }
                 { searchingStatus === 'Fulfilled' && 
                     searchingResult && 
                         searchingResult.map((element) => (
@@ -69,10 +77,6 @@ export default function FindUserPage (){
                                 // type={'Chatboard'}
                             />
                         ))
-                    (!searchingResult) &&
-                    <p className={`${s.title} ${s.alert}`}>
-                        Ничего не найдено
-                    </p>
                 }
             </div>
         </div>

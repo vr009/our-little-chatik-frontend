@@ -15,7 +15,7 @@ export default class ChatListService {
     static async searchContacts(query):Promise<AxiosResponse<any>> {
         // return api.get<any>(`/search?${query}`);
 
-        return api.get<any>('/search', {params: {name: query}})
+        return api.get<any>('/user/search', {params: {name: query}})
 
         // const params = new URLSearchParams({ foo: 'bar' });
         // params.append('extraparam', 'value');
