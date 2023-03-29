@@ -13,14 +13,15 @@ export default function Header () {
     const navigate = useNavigate()
     const dipatch = useDispatch()
 
-    const [user, setUser] = useState(null)
+    const [user, setUser] = useState({})
 
     // const isAuth = useSelector((state) => state.user.isAuth);
 
     useEffect(()=>{
         AuthService.whoAmI()
-            .then((data) => {
-                setUser({name: data.name, surname: data.surname});
+            .then((res) => {
+                console.log(res.data);
+                setUser({name: res.data.name, surname: res.data.surname});
             })
             .catch((e) => {
                 console.log(e);

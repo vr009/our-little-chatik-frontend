@@ -17,7 +17,7 @@ export const LoadingNameSurname = () => {
 export const LoadingChatItem = () => {
 	return(
 		<div className={s.info}>
-			<div className={s.logo}>
+			<div className={s.avatar}>
 				<Skeleton/>
 			</div>
 			<div>
@@ -37,16 +37,18 @@ export default function ChatItem(props) {
 			<Link to={`/messages/${props.userId}`} className={s.info}>
 				<Picture
 					src={props.avatar}
-					alt={props.name}
-					class={s.logo}
+					// alt={props.name}
+					class={s.avatar}
 				/>
-				<div>
+				<div className={s.userData}>
 					<div className={s.name}>
 						{props.name +" " + props.surname}
 					</div>
-					<div className={s.message}>
-						{props.lastMessage}
-					</div>
+					{props.lastMessage && 
+						<div className={s.message}>
+						{	props.lastMessage}
+						</div>
+					}
 				</div>
 			</Link>
 		</>

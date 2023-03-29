@@ -19,11 +19,10 @@ export const searchContacts  = createAsyncThunk(
         try {
             ChatListService.searchContacts(arg)
                 .then((response)=> {
-                    //@ts-ignore
-                    // dispatch(setContacts(response.data.user))
                     if (response.data.length != 0) {
                         dispatch(setError(null))
                         dispatch(setStatus('Fulfilled'));
+                        dispatch(setContacts(response.data))
                         console.log(response.data);
                         console.log('все норм');
                     } else {

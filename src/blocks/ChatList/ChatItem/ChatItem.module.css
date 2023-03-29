@@ -1,8 +1,9 @@
-.logo {
+.avatar {
     width: 45px;
     height: 45px;
-    border-radius: 4px;
+    border-radius: 25%;
     margin-right: 15px;
+    background: #4a4a4a;
 }
 
 .info {
@@ -34,4 +35,10 @@
     margin-top: 5px;
     width: 250px;
     height: 25px;
+}
+
+.userData {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }

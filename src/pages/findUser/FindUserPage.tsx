@@ -71,10 +71,8 @@ export default function FindUserPage (){
                                 avatar={element.avatar}
                                 name={element.name}
                                 surname={element.surname}
-                                lastMessage={element.lastMessage}
                                 userId={element.id}
                                 key={element.id}
-                                // type={'Chatboard'}
                             />
                         ))
                 }
