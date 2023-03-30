@@ -9,7 +9,9 @@ export const getChats = createAsyncThunk(
         const request = ChatListService.getList()
 
         const timer = new Promise((resolve, reject) => {
-            setTimeout(reject, 6000, 'Request time is out. Server didn`t response');
+            setTimeout(()=>{
+                reject(new Error('Request time is out. Server haven`t responded'));
+            }, 3000);
           });
 
         try {
@@ -20,14 +22,14 @@ export const getChats = createAsyncThunk(
                     dispatch(setStatus('Fulfilled'))
                 })
                 .catch((e)=>{
-                    console.log(e)
+                    // console.log(e)
                     dispatch(setError(e));
                     dispatch(setStatus('Rejected'))
                 })
 
         
         } catch(e) {
-            console.log(e);
+            // console.log(e);
             dispatch(setError(e));
             dispatch(setStatus('Rejected'))
         }

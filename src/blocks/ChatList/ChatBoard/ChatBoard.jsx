@@ -71,8 +71,8 @@ export default function ChatBoard () {
             {
                 (((chatListStatus === "Rejected") || (chatListError)) &&
                     <div className={s.error}>
-                        <b>Ops! There is an error: 
-                        {chatListError.message}</b>
+                        <b>Ops! There is an error:
+                        <br/>{chatListError.message}</b>
                         <br/>
                         <br/>
                         Try to reload this page
