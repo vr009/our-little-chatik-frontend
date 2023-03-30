@@ -4,8 +4,16 @@ import ChatListService from "../service/ChatListService";
 export const getChats = createAsyncThunk(
     'chats/get-chatlist', 
     async function (arg,{dispatch}) {
+        dispatch(setStatus('Pending'))
+
+        const request = ChatListService.getList()
+
+        const timer = new Promise((resolve, reject) => {
+            setTimeout(reject, 6000, 'Request time is out. Server didn`t response');
+          });
+
         try {
-            ChatListService.getList()
+            Promise.race([request,timer])
                 .then((res) => {
                     console.log("список чатов: ",res.data)
                     dispatch(setChats(res.data));
@@ -13,13 +21,15 @@ export const getChats = createAsyncThunk(
                 })
                 .catch((e)=>{
                     console.log(e)
-                    // dispatch(setError(e));
-                    dispatch(setStatus('Error'))
+                    dispatch(setError(e));
+                    dispatch(setStatus('Rejected'))
                 })
+
+        
         } catch(e) {
             console.log(e);
             dispatch(setError(e));
-            dispatch(setStatus('Error'))
+            dispatch(setStatus('Rejected'))
         }
     });
 

@@ -18,18 +18,33 @@ export default function ChatBoard () {
 
     const dispatch = useDispatch()
 
-    const chatList = useSelector((state) => state.chatList.searchChats.searchedChats);
+    const chatListParsed = useSelector((state) => state.chatList.searchChats.searchedChats);
 
-    // const chatListik = useSelector((state) => state.chatList.chats);
+    const chatList = useSelector((state) => state.chatList.chats);
 
     const chatListStatus = useSelector((state) => state.chatList.status);
     const chatListError = useSelector((state) => state.chatList.error);
 
+    useEffect(()=>{
+        dispatch(getChats());
+    },[dispatch])
+
     return (
         <div className={s.board}>
             {
+                (((chatListStatus === "Fulfilled") && (chatList.length === 0)) &&
+                    <div className={s.error}>
+                        <b>You don`t have any chats</b>
+                        <br/>
+                        <br/>
+                        Click to button on the right of input to add new chats
+                    </div>
+                )
+            }
+
+            {
                 ((chatListStatus === "Fulfilled") && (!chatListError)) &&
-                    chatList.map((element) => {
+                    chatListParsed.map((element) => {
                         return (
                             <ChatItem
                                 avatar={element.avatar}
@@ -45,21 +60,22 @@ export default function ChatBoard () {
                         )
                     }
                 )
-                }
+            }
 
             {
-                (((chatListStatus === "pending") && (!chatListError)) &&
+                (((chatListStatus === "Pending") && (!chatListError)) &&
                         <Loader/>
                 )
             }
 
             {
-                ((chatListError) &&
+                (((chatListStatus === "Rejected") || (chatListError)) &&
                     <div className={s.error}>
-                        <b>Возникла ошибка при загрузке данных</b>
+                        <b>Ops! There is an error: 
+                        {chatListError.message}</b>
                         <br/>
                         <br/>
-                        Попробуйте перезагрузить страницу
+                        Try to reload this page
                     </div>
                 )
             }

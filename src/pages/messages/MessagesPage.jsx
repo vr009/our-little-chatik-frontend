@@ -34,10 +34,6 @@ export default function MessagesPage() {
         dispatch(searchChats(event.target.value))
     },[query])
 
-    useEffect(()=>{
-        dispatch(getChats());
-    },[dispatch])
-
     useEffect(() => {
         ChatListService.getList()
             // .then(data =>{
@@ -45,7 +41,7 @@ export default function MessagesPage() {
             //     // console.log(data)
             // })
             .catch(e => {
-                navigate('/')
+                // navigate('/')
                 console.log(e)
             })
     },[])

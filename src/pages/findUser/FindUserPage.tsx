@@ -73,7 +73,8 @@ export default function FindUserPage (){
                                 avatar={element.avatar}
                                 name={element.name}
                                 surname={element.surname}
-                                userId={element.id}
+                                userId={element.user_id}
+                                lastOnline={element.last_auth}
                                 key={element.id}
                             />
                         ))
