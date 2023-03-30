@@ -18,24 +18,27 @@ export const Loader = () => (
 
 export default function Messages (props) {
 
-    const messagesList = useSelector((state) => state.messageList.messages);
-    const chatListStatus = useSelector((state) => state.messageList.status);
-    const chatListError = useSelector((state) => state.messageList.error);
+    // const messagesList = useSelector((state) => state.messageList.messages);
+    // const chatListStatus = useSelector((state) => state.messageList.status);
+    // const chatListError = useSelector((state) => state.messageList.error);
 
-    const dispatch = useDispatch()
+    // const dispatch = useDispatch()
 
-    useEffect(()=>{
-        dispatch(fetchMessages(props.id));
-    },[props.id])
+    // useEffect(()=>{
+    //     dispatch(fetchMessages(props.id));
+    // },[props.id])
 
 
-    useEffect(() => {
-        scrollToBottom(props.container)
-    }, [props.container, messagesList]);
+    // useEffect(() => {
+    //     scrollToBottom(props.container)
+    // }, [props.container, messagesList]);
 
     return (
         <>
-            {(chatListError !== null) && (
+            <div className={s.error}>
+                    Возникла ошибка загрузки сообщений
+            </div>
+            {/* {(chatListError !== null) && (
                 <div className={s.error}>
                     Возникла ошибка загрузки сообщений
                 </div>
@@ -47,7 +50,7 @@ export default function Messages (props) {
                 messagesList.map((message,index) => {
                     return <Message key={index} text={message.Payload} isMine={(message.SenderID === YOUR_ID)} date={message.CreatedAt}/>
                 })
-            }
+            } */}
         </>
     )
 }

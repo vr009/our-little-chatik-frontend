@@ -1,6 +1,8 @@
 .header {
     width: 100%;
     border-bottom: solid #333333;
+    background: #333333;
+    height: 60px;
 }
 
 .header .content {

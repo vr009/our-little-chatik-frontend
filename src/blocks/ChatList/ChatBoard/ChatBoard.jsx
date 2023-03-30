@@ -2,7 +2,7 @@ import ChatItem, {LoadingChatItem} from "../ChatItem/ChatItem.jsx";
 import s from "./ChatBoard.module.css"
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
-import {fetchChats} from "../../../store/chatListSlice.js";
+import {getChats} from "../../../store/chatListSlice.js";
 
 const Loader = () => (
     <>
@@ -19,29 +19,31 @@ export default function ChatBoard () {
     const dispatch = useDispatch()
 
     const chatList = useSelector((state) => state.chatList.searchChats.searchedChats);
+
+    // const chatListik = useSelector((state) => state.chatList.chats);
+
     const chatListStatus = useSelector((state) => state.chatList.status);
     const chatListError = useSelector((state) => state.chatList.error);
-
-    useEffect(()=>{
-        dispatch(fetchChats());
-
-    },[dispatch])
 
     return (
         <div className={s.board}>
             {
-                ((chatListStatus === "fulfilled") && (!chatListError)) &&
-                    chatList.map((element) => (
+                ((chatListStatus === "Fulfilled") && (!chatListError)) &&
+                    chatList.map((element) => {
+                        return (
                             <ChatItem
                                 avatar={element.avatar}
-                                name={element.name}
-                                surname={element.surname}
+                                name={`${element.chat_id.slice(0,7)}...${element.chat_id.slice(-7)}`}
+                                surname={''}
                                 lastMessage={element.lastMessage}
-                                userId={element.id}
+                                // TODO вернуть user ID
+                                // userId={element.id}
+                                userId={element.chat_id}
                                 key={element.id}
-                                // type={'Chatboard'}
+                                type={'Chatboard'}
                             />
-                    )
+                        )
+                    }
                 )
                 }
 
@@ -59,7 +61,6 @@ export default function ChatBoard () {
                         <br/>
                         Попробуйте перезагрузить страницу
                     </div>
-
                 )
             }
         </div>

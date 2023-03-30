@@ -67,11 +67,11 @@ export default function ChatArea() {
                     <Input
                         value={messageValue}
                         onChange={messageChange}
-                        placeholder="сообщение"
+                        placeholder="Type your message"
                         onKeyUp={handleInputKeyPress}
                     />
                     <Button className={s.button} onClick={handleAddMessageClick}>
-                        Отправить
+                        Send
                     </Button>
                 </div>
             </div>

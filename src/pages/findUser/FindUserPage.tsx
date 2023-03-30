@@ -33,11 +33,11 @@ export default function FindUserPage (){
 
     return (
         <div className={s.background}>
-            <p className={s.title}>Поиск пользователей</p>
+            <p className={s.title}>Find user by his name</p>
             <div className={s.inputs}>
                 <Input
                     value={userQuery}
-                    placeholder="Введите имя"
+                    placeholder="Type friend`s name"
                     onChange={handleChange}
                 />
             </div>
@@ -51,16 +51,18 @@ export default function FindUserPage (){
                 }
                 { searchingStatus === 'Error' && 
                     <>
-                        <p className={`${s.title} ${s.alert}`}>
-                            Ошибка загрузки
+                        <p className={`${s.contextual} ${s.alert}`}>
+                            Something went wrong!
                         </p>
                     </>
                 }
                 { searchingStatus === 'NotFound' && 
                     <>
-                        <p className={`${s.title}`}>
-                            К сожалению, таких у нас нет
-                            ¯\_(ツ)_/¯
+                        <p className={`${s.contextual}`}>
+                            We are sorry, we don`t know them
+                            <br/>
+                            <br/>
+                            <strong>¯\_(ツ)_/¯</strong>
                         </p>
                     </>
                 }

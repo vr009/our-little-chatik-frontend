@@ -1,9 +1,11 @@
 import React from 'react';
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 import s from './ChatItem.module.css';
 import Picture from "../../../components/picture/Picture";
 import {Skeleton} from "../../../components/sceleton/Sceleton";
+import ChatListService from '../../../service/ChatListService';
+import { useDispatch } from 'react-redux';
 
 export const LoadingNameSurname = () => {
 	return (
@@ -31,10 +33,29 @@ export const LoadingChatItem = () => {
 }
 
 export default function ChatItem(props) {
+
+	const dispatch = useDispatch()
+
+	const navigate = useNavigate();
+
+	const handler = () => {
+		if (props.type === "Chatboard") {
+			console.log("Chatboard");
+			navigate(`/messages/${props.userId}`)
+
+
+			navigate(`/messages/${props.userId}`)
+		} else {
+			ChatListService.addChat([props.userId]);
+			dispatch(toggleVisible())
+		}
+	}
+
 	return (
 		<>
 		{/*(props.type === "Chatboard" && "ff")*/}
-			<Link to={`/messages/${props.userId}`} className={s.info}>
+			<Link to={`/messages/${props.userId}`} className={s.info} onClick={handler}>
+			{/* <div onClick={handler} className={s.info}> */}
 				<Picture
 					src={props.avatar}
 					// alt={props.name}
@@ -50,6 +71,7 @@ export default function ChatItem(props) {
 						</div>
 					}
 				</div>
+			{/* </div> */}
 			</Link>
 		</>
 	);

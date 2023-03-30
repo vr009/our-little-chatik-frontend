@@ -31,13 +31,14 @@
 
 .chatarea {
     display: block;
+    height: 100%;
 }
 
 .layout {
     display: flex;
     max-width: 1200px;
     margin: 0 auto;
-    height: calc(100vh - 60px);
+    height: calc(100vh - 65px);
     border-right: solid #333;
     border-left: solid #333;
 }
@@ -52,5 +53,5 @@
 }
 
 .addIcon img {
-    width: 30px;
+    width: 35px;
 }

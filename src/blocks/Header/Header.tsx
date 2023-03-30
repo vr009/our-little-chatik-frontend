@@ -20,7 +20,7 @@ export default function Header () {
     useEffect(()=>{
         AuthService.whoAmI()
             .then((res) => {
-                console.log(res.data);
+                console.log("Текущий юзер: ",res.data);
                 setUser({name: res.data.name, surname: res.data.surname});
             })
             .catch((e) => {
@@ -32,7 +32,6 @@ export default function Header () {
     },[])
 
     const logoutHandler = () =>{
-        alert('logout')
         AuthService.logut()
             .then(() => {
                 alert('You have logged out');
@@ -43,8 +42,6 @@ export default function Header () {
                 console.log(e)
             })
     }
-
-    console.log(user)
 
     return (
         <div className={s.header}>

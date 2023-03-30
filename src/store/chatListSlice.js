@@ -1,15 +1,27 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import ChatListService from "../service/ChatListService";
 
-export const fetchChats = createAsyncThunk(
-    'chats/fetch-chatlist',
-    async function () {
-        const response = await fetch('http://localhost:3003/Chats');
-
-        const data = await response.json();
-
-        return data
-    }
-);
+export const getChats = createAsyncThunk(
+    'chats/get-chatlist', 
+    async function (arg,{dispatch}) {
+        try {
+            ChatListService.getList()
+                .then((res) => {
+                    console.log("список чатов: ",res.data)
+                    dispatch(setChats(res.data));
+                    dispatch(setStatus('Fulfilled'))
+                })
+                .catch((e)=>{
+                    console.log(e)
+                    // dispatch(setError(e));
+                    dispatch(setStatus('Error'))
+                })
+        } catch(e) {
+            console.log(e);
+            dispatch(setError(e));
+            dispatch(setStatus('Error'))
+        }
+    });
 
 const chatsSlice = createSlice({
     name: "chats",
@@ -24,9 +36,12 @@ const chatsSlice = createSlice({
     },
     reducers: {
         searchChats(state, action) {
-            const querySearch = action.payload
+            /* TODO Исправить chat_id на name
+            так было сделано пока в списке чатов не приходили имена
+            */
+
             const queryList = state.chats.filter(chat => {
-                return chat.name.toUpperCase().includes(querySearch.toUpperCase());
+                return chat.chat_id.toUpperCase().includes(action.payload.toUpperCase());
             })
 
             return {
@@ -36,25 +51,20 @@ const chatsSlice = createSlice({
                     searchedChats: queryList
                 }
             }
-        }
-    },
-    extraReducers: {
-        [fetchChats.pending]: (state) => {
-            state.status = "pending";
-            state.error = null;
         },
-        [fetchChats.fulfilled]: (state, action) => {
-            state.status = "fulfilled";
-            state.chats = action.payload;
-            state.searchChats.searchedChats = action.payload;
+        setChats(state, action) {
+            state.chats = action.payload
+            state.searchChats.searchedChats = action.payload
         },
-        [fetchChats.rejected]: (state, action) => {
-            state.status = "error";
-            state.error = true;
+        setError(state, action) {
+            state.error = action.payload
+        },
+        setStatus(state, action) {
+            state.status = action.payload
         },
     }
 })
 
-export const {toggleChats, searchChats} = chatsSlice.actions;
+export const {searchChats, setChats, setError, setStatus} = chatsSlice.actions;
 
 export default chatsSlice.reducer

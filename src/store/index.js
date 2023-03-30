@@ -8,7 +8,7 @@ import contactSlice from "./contactSlice.ts";
 export default configureStore({
     reducer:{
         chatList: chatListReducer,
-        messageList: messageListReducer,
+        // messageList: messageListReducer,
         modal: modalReducer,
         user: userSlice,
         contacts: contactSlice

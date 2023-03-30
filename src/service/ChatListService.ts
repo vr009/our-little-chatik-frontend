@@ -11,16 +11,12 @@ export default class ChatListService {
         return api.get<any>('/chat/list');
     }
 
-    //todo ПОПРАВИТЬ!
     static async searchContacts(query):Promise<AxiosResponse<any>> {
-        // return api.get<any>(`/search?${query}`);
-
         return api.get<any>('/user/search', {params: {name: query}})
-
-        // const params = new URLSearchParams({ foo: 'bar' });
-        // params.append('extraparam', 'value');
-        // axios.get('/foo', params);
-        
     }
 
+    static async addChat(ids: string[]):Promise<AxiosResponse<any>> {
+        console.log(ids);
+        return api.post<any>('/chat/new', {participants: ids})
+    }
 }
