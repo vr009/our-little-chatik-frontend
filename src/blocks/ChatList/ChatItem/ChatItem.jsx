@@ -7,6 +7,7 @@ import {Skeleton} from "../../../components/sceleton/Sceleton";
 import ChatListService from '../../../service/ChatListService';
 import { useDispatch } from 'react-redux';
 import { toggleVisible } from '../../../store/modalSlice';
+import { getChats } from '../../../store/chatListSlice';
 
 export const LoadingNameSurname = () => {
 	return (
@@ -45,9 +46,16 @@ export default function ChatItem(props) {
 			navigate(`/messages/${props.userId}`)
 		} else {
 			console.log('закрываем')
-			ChatListService.addChat([props.userId]);
-			dispatch(toggleVisible());
-			navigate(`/messages/${props.userId}`)
+			ChatListService.addChat([props.userId])
+				.then(() => {
+					dispatch(toggleVisible());
+					dispatch(getChats())
+					navigate(`/messages/${props.userId}`)
+				})
+				.catch((e)=> {
+					alert(e.message)
+				})
+			
 		}
 	}
 
