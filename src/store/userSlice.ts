@@ -53,8 +53,30 @@ export const signup  = createAsyncThunk(
     }
 );
 
+
+export const whoAmI  = createAsyncThunk(
+    'user/whoAmI',
+    // @ts-ignore
+    async function (_,{dispatch}) {
+        try {
+            AuthService.whoAmI()
+            .then((res) => {
+                console.log("Текущий юзер: ",res.data);
+                dispatch(setUser(res.data))
+                // setUserInfo({name: res.data.name, surname: res.data.surname});
+            })
+            .catch((e) => {
+                console.log(e);
+            })
+        } catch (e:any) {
+            dispatch(setError(e.response.data.error.message))
+            console.log(e);
+        }
+    }
+);
+
 interface userState {
-    user: IUser
+    userInfo: IUser
     isAuth: boolean,
     error: boolean,
     status: string
@@ -62,7 +84,7 @@ interface userState {
 
 
 const initialState = {
-    user: {},
+    userInfo: {},
     isAuth: false,
     error: false,
     status: ''
@@ -77,7 +99,7 @@ const userSlice = createSlice({
             state.isAuth = action.payload
         },
         setUser(state, action) {
-            state.user = action.payload
+            state.userInfo = action.payload
         },
         setError(state, action) {
             state.error = action.payload

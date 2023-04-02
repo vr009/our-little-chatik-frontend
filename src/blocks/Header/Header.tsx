@@ -3,39 +3,30 @@ import Button from "../../components/button/Button";
 import AuthService from "../../service/AuthService";
 import {useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {setAuth} from "../../store/userSlice";
+import {setAuth, setUser, whoAmI} from "../../store/userSlice";
 import React, { useEffect, useState } from "react";
 import api from "../http";
 import { LoadingNameSurname } from "../../blocks/ChatList/ChatItem/ChatItem.jsx"
 
+
 export default function Header () {
 
     const navigate = useNavigate()
-    const dipatch = useDispatch()
+    const dispatch = useDispatch()
 
-    const [user, setUser] = useState({})
+    const [userInfo, setUserInfo] = useState({})
 
-    // const isAuth = useSelector((state) => state.user.isAuth);
+    const storedUserInfo = useSelector((state) => state.user.userInfo);
 
     useEffect(()=>{
-        AuthService.whoAmI()
-            .then((res) => {
-                console.log("Текущий юзер: ",res.data);
-                setUser({name: res.data.name, surname: res.data.surname});
-            })
-            .catch((e) => {
-                console.log(e);
-                setTimeout(()=>{
-                    setUser({name: 'Не получилось загрузить данные о пользователе'});
-                }, 1000)
-            })
+        dispatch(whoAmI())
     },[])
 
     const logoutHandler = () =>{
         AuthService.logut()
             .then(() => {
                 alert('You have logged out');
-                dipatch(setAuth(false));
+                dispatch(setAuth(false));
                 navigate('/')
             })
             .catch(e => {
@@ -46,8 +37,8 @@ export default function Header () {
     return (
         <div className={s.header}>
                 <div className={s.username}>
-                    {!user && <LoadingNameSurname/>}
-                    {user && <p>{user.name} {user.surname}</p>}
+                    {!storedUserInfo.name && <LoadingNameSurname/>}
+                    {storedUserInfo.name && <p>{storedUserInfo.name} {storedUserInfo.surname}</p>}
                 </div>
                 <div className={s.controls}>
                     <Button

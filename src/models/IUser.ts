@@ -1,7 +1,11 @@
 export interface IUser {
-    id: string
-    username: string;
+    avatar: string | null;
+    contact_list: any[];
+    last_auth: string;
+    name: string;
+    nickname: string;
     password: string | null;
-    email: string | null;
-    fullName: string | null;
+    registered: string;
+    surname: string;
+    user_id: string;
 }

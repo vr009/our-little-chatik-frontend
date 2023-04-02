@@ -26,6 +26,11 @@ export default function ChatArea() {
         setMessageValue(event.target.value)
     },[])
 
+
+    useEffect(()=> {
+        console.log('Параметры: ',params)
+    },[])
+
     const handleAddMessageClick = useCallback(() => {
         if (!messageValue) {
             return;
@@ -35,7 +40,7 @@ export default function ChatArea() {
             "Payload": messageValue,
             "SenderID": YOUR_ID,
             "CreatedAt": new Date().getTime(),
-            "ChatID": params.id,
+            "ChatID": params.chatId,
             "MsgID": createId(),
         }
 
@@ -53,13 +58,15 @@ export default function ChatArea() {
         });
 
 
+        //TODO поправить userID на chatID
+
     return (
         <>
             <div className={s.main}>
-                <ChatHeader id={params.userId}/>
+                <ChatHeader id={params.chatId}/>
                 <div className={s.messages} ref={containerRef}>
                     <Messages
-                            id={params.userId}
+                            chatId={params.chatId}
                             container={containerRef.current}
                         />
                 </div>

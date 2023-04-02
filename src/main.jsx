@@ -7,8 +7,6 @@ import {
     RouterProvider,
 } from "react-router-dom"
 
-
-
 import ReactDOM from 'react-dom/client'
 import './index.css'
 import Root from "./pages/root/root.jsx";
@@ -41,7 +39,7 @@ const router = createBrowserRouter([
         errorElement: <ErrorPage />,
         children: [
             {
-                path: ":userId",
+                path: ":chatId",
                 element: <ChatArea />,
                 errorElement: <ErrorPage />,
             },

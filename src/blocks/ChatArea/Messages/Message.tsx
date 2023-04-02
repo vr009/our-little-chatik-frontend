@@ -1,11 +1,15 @@
 // @ts-ignore
 import s from "./Message.module.css"
 import {Skeleton} from "../../../components/sceleton/Sceleton";
+import React from "react";
 
-type Props = {
-    text: string;
-    isMine: boolean;
+type ChatMessageType = {
+    chat_id: string;
+    created_at: boolean;
     date: number;
+    msg_id: string;
+    payload: string;
+    sender_id: string
 };
 
 export const MessageLoader = () => (
@@ -25,7 +29,7 @@ export const MessageLoader = () => (
     </>
 )
 
-export const Message = (props: Props) => {
+export const Message = (props: ChatMessageType) => {
 
     const  messageStyle = {
         color: props.isMine ?  "black" : "white",

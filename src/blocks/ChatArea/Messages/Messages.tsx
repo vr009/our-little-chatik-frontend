@@ -4,9 +4,14 @@ import {useEffect} from "react";
 import {scrollToBottom} from "../../../utils/utils";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchMessages} from "../../../store/messagesSlice.js";
+import ChatListService from "../../../service/ChatListService";
+import { IUser } from "../../../models/IUser";
+import React from "react";
 
-const YOUR_ID = "337295eb-cbde-479c-a4ee-683019adc838"
 
+// const storedUserInfo : IUser = useSelector((state : any) => state.user.userInfo);
+
+// const YOUR_ID = storedUserInfo.user_id;
 
 export const Loader = () => (
     <>
@@ -18,11 +23,35 @@ export const Loader = () => (
 
 export default function Messages (props) {
 
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        ChatListService.activateChat(props.chatId)
+				.then(() => {
+					console.log('Чат активирован',props.chatId)
+                    console.log('------');
+				})
+				.catch((e) => {
+					console.log('Чат не активирован', props.chatId);
+					console.log(e)
+                    console.log('------');
+				})
+
+        ChatListService.getMessages(props.chatId)
+            .then((res) => {
+                console.log('Список сообщений из чата:', props.chatId);
+                console.log(res.data);
+                console.log('------');
+                dispatch(s)
+            })
+            .catch((e) => {
+                console.log(e);
+            })   
+    },[])
+
     // const messagesList = useSelector((state) => state.messageList.messages);
     // const chatListStatus = useSelector((state) => state.messageList.status);
     // const chatListError = useSelector((state) => state.messageList.error);
-
-    // const dispatch = useDispatch()
 
     // useEffect(()=>{
     //     dispatch(fetchMessages(props.id));

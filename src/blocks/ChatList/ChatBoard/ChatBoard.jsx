@@ -53,7 +53,7 @@ export default function ChatBoard () {
                                 lastMessage={element.lastMessage}
                                 // TODO вернуть user ID
                                 // userId={element.id}
-                                userId={element.chat_id}
+                                chatId={element.chat_id}
                                 key={element.id}
                                 type={'Chatboard'}
                             />

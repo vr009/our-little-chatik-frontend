@@ -43,14 +43,17 @@ export default function ChatItem(props) {
 	const handler = () => {
 		if (props.type === "Chatboard") {
 			console.log("Chatboard");
-			navigate(`/messages/${props.userId}`)
+
+		
+			navigate(`/messages/${props.chatId}`)
 		} else {
 			console.log('закрываем')
-			ChatListService.addChat([props.userId])
+		
+			ChatListService.addChat([props.chatId])
 				.then(() => {
 					dispatch(toggleVisible());
 					dispatch(getChats())
-					navigate(`/messages/${props.userId}`)
+					navigate(`/messages/${props.chatId}`)
 				})
 				.catch((e)=> {
 					alert(e.message)
