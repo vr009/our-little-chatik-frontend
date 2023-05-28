@@ -6,7 +6,7 @@ import http from "../http";
 export default class AuthService {
     // @ts-ignore
     static async signin(nickname: string, password: string):Promise<AxiosResponse<any>> {
-        return api.post<any>('/auth/signin',{nickname,password})
+        return api.post<any>('/auth/login',{nickname,password})
     }
     // @ts-ignore
     static async signup(nickname: string, password: string, name: string, surname: string):Promise<AxiosResponse<any>> {
