@@ -16,11 +16,14 @@ const FormPage = (props) => {
     const error = useSelector((state) => state.user.error);
 
     useEffect(()=>{
-            dispatch(setError(false))
             if (isAuth) {
                 navigate('/messages')
             }
     })
+
+    useEffect(()=>{
+            dispatch(setError(false))
+    },[])
 
     useEffect(()=>{
         dispatch(setError(false))
@@ -56,7 +59,24 @@ const FormPage = (props) => {
         }
     }
 
+    function renderError (errCode) {
+        switch (error) {
+            case 404 :
+                return "Invalid nickname";
+                break;
+            case 500 :
+                return "Invalid password";
+                break;
+            case 400 :
+                return "User already exists";
+                break;
+            default :
+                return `Unexpected error: ${errCode}`
+        }
+    }
+
     const heading =  (props.isRegistration) ? 'Sign up' : 'Log in';
+    
     return (
         <>
             <div className={s.main} id="welcome">
@@ -90,8 +110,7 @@ const FormPage = (props) => {
                         onChange={(e) => handleChange(setPassword,e)}
                     />
                     <div className={`${s.alert} ${ !error ? s.disabled : ''}`}>
-                        <p> There is an error: </p>
-                        <p> {error} </p>
+                        <p>{renderError(error)}</p>
                     </div>
                     <Button>
                         {props.isRegistration ? "Sign up" : "Log in" }

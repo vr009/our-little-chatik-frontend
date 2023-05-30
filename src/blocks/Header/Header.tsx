@@ -7,6 +7,8 @@ import {setAuth, setUser, whoAmI} from "../../store/userSlice";
 import React, { useEffect, useState } from "react";
 import api from "../http";
 import { LoadingNameSurname } from "../../blocks/ChatList/ChatItem/ChatItem.jsx"
+import Picture from "../../components/picture/Picture";
+import defaultAvatar from "../../assets/png/default_avatar.png";
 
 
 export default function Header () {
@@ -37,8 +39,17 @@ export default function Header () {
     return (
         <div className={s.header}>
                 <div className={s.username}>
-                    {!storedUserInfo && <LoadingNameSurname/>}
-                    {storedUserInfo && <p>{storedUserInfo.name} {storedUserInfo.surname}</p>}
+                    {!storedUserInfo && (<LoadingNameSurname/> )}
+                    {storedUserInfo &&
+                        <>
+                            <Picture
+                                src={ storedUserInfo.avatar ? storedUserInfo.avatar : defaultAvatar }
+                                // alt={props.name}
+                                class={s.avatar}
+                            />
+                            <p>{storedUserInfo.name} {storedUserInfo.surname}</p>
+                        </>
+                    }
                 </div>
                 <div className={s.controls}>
                     <Button

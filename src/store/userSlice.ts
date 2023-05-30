@@ -17,14 +17,13 @@ export const login  = createAsyncThunk(
                     dispatch(setError(null))
                 })
                 .catch((e:any) => {
-                    dispatch(setError(e.message))
-                    console.log(e);
+                    dispatch(setError(e.response.status))
                 })
                 //@ts-ignore
                 // localStorage.setItem('token', response.data.jwt);
         } catch (e:any) {
-            dispatch(setError(e.response.data.error.message))
-            console.log(e);
+            dispatch(setError(e.response))
+            console.error(e)
         }
     }
 );
@@ -43,12 +42,12 @@ export const signup  = createAsyncThunk(
                     localStorage.setItem('token', response.data.jwt);
                 })
                 .catch((e:any) => {
-                    dispatch(setError(e.message))
+                    dispatch(setError(e.response.status))
                 })
             //@ts-ignore
         } catch (e:any) {
-            // dispatch(setError(e.response.data.error.message))
-            // console.log(e);
+            dispatch(setError(e.response))
+            console.error(e)
         }
     }
 );
@@ -66,11 +65,12 @@ export const whoAmI  = createAsyncThunk(
                 // setUserInfo({name: res.data.name, surname: res.data.surname});
             })
             .catch((e) => {
+                dispatch(setError(e.response))
                 console.log(e);
             })
         } catch (e:any) {
-            dispatch(setError(e.response.data.error.message))
-            console.log(e);
+            dispatch(setError(e.response))
+            console.error(e)
         }
     }
 );

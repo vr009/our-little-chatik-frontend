@@ -9,6 +9,8 @@ import { useDispatch } from 'react-redux';
 import { toggleVisible } from '../../../store/modalSlice';
 import { getChats } from '../../../store/chatListSlice';
 
+import defaultAvatar from "../../../assets/png/default_avatar.png";
+
 export const LoadingNameSurname = () => {
 	return (
 		<div className={`${s.name} ${s.loading}`}>
@@ -68,7 +70,7 @@ export default function ChatItem(props) {
 			{/* <Link to={`/messages/${props.userId}`} className={s.info} onClick={handler}> */}
 			<div onClick={handler} className={s.info}>
 				<Picture
-					src={props.avatar}
+					src={ props.avatar ? props.avatar : defaultAvatar }
 					// alt={props.name}
 					class={s.avatar}
 				/>

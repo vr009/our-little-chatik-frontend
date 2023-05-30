@@ -1,5 +1,5 @@
 import s from './messages.module.css'
-import chatIcon from "../../assets/newChat.svg"
+import chatIcon from "../../assets/svg/newChat.svg"
 import ChatBoard from "../../blocks/ChatList/ChatBoard/ChatBoard";
 import { Outlet } from "react-router-dom";
 import {useCallback, useEffect, useRef, useState} from "react";
