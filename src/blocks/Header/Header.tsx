@@ -20,7 +20,7 @@ export default function Header () {
 
     useEffect(()=>{
         dispatch(whoAmI())
-    },[])
+    },[dispatch])
 
     const logoutHandler = () =>{
         AuthService.logut()
@@ -37,8 +37,8 @@ export default function Header () {
     return (
         <div className={s.header}>
                 <div className={s.username}>
-                    {!storedUserInfo.name && <LoadingNameSurname/>}
-                    {storedUserInfo.name && <p>{storedUserInfo.name} {storedUserInfo.surname}</p>}
+                    {!storedUserInfo && <LoadingNameSurname/>}
+                    {storedUserInfo && <p>{storedUserInfo.name} {storedUserInfo.surname}</p>}
                 </div>
                 <div className={s.controls}>
                     <Button
