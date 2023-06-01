@@ -51,10 +51,8 @@ export default function ChatBoard () {
                                 name={`${element.chat_id.slice(0,7)}...${element.chat_id.slice(-7)}`}
                                 surname={''}
                                 lastMessage={element.lastMessage}
-                                // TODO вернуть user ID
-                                // userId={element.id}
                                 chatId={element.chat_id}
-                                key={element.id}
+                                key={element.chat_id}
                                 type={'Chatboard'}
                             />
                         )

@@ -5,18 +5,23 @@ import { v4 as createId } from "uuid"
 import Messages from "./Messages/Messages";
 import ChatHeader from "./ChatHeader/ChatHeader";
 import {addMessage} from "../../store/messagesSlice.js";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import Modal from "../../components/modal/Modal.jsx";
 import Input from "../../components/input/Input.tsx";
 import Button from "../../components/button/Button.jsx";
-
-const YOUR_ID = "337295eb-cbde-479c-a4ee-683019adc838";
+import { useWebSocket } from "react-use-websocket/dist/lib/use-websocket";
 
 export default function ChatArea() {
 
     const dispatch = useDispatch();
 
     const [messageValue, setMessageValue] = useState('');
+
+    const [socketUrl, setSocketUrl] = useState('ws://127.0.0.1:8084/ws');
+
+    const { sendMessage, lastMessage, readyState} = useWebSocket(socketUrl)
+
+    const YOUR_ID = useSelector((state) => state.user.userInfo.user_id);
 
     const params = useParams();
 
@@ -27,8 +32,17 @@ export default function ChatArea() {
     },[])
 
 
+    const INITIAL_MESSAGE = {
+        "chatID": params.chatId,
+        "senderID": YOUR_ID, 
+        "payload": 'INITIAL_MESSAGE', 
+        "SessionStart": true
+    }
+
+
     useEffect(()=> {
-        console.log('Параметры: ',params)
+        console.log('Параметры: ', params);
+        sendMessage(INITIAL_MESSAGE)
     },[])
 
     const handleAddMessageClick = useCallback(() => {
@@ -37,14 +51,16 @@ export default function ChatArea() {
         }
 
         let currentMessage = {
-            "Payload": messageValue,
-            "SenderID": YOUR_ID,
-            "CreatedAt": new Date().getTime(),
-            "ChatID": params.chatId,
-            "MsgID": createId(),
+            "chatID": params.chatId,
+            "senderID": YOUR_ID, 
+            "payload": messageValue, 
+            "SessionStart": false
         }
 
-        dispatch(addMessage(currentMessage))
+        // dispatch(addMessage(currentMessage))
+        sendMessage(currentMessage)
+         
+        console.log(currentMessage)
 
         setMessageValue('');
 

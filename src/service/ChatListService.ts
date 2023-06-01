@@ -24,15 +24,19 @@ export default class ChatListService {
         return api.post<any>('/chat/active', {chat_id: chat_id})
     }
 
+    //@ts-ignore
     static async getMessages(chat_id: string):Promise<AxiosResponse<any>> {
-        console.log(chat_id.toString())
-        return api.get<any>('/chat/conv', {headers: {
-            // CHAT_ID: chat_id.toString(),
-            ID: chat_id,
-            OFFSET: 0,
-            LIMIT: 10,
+        let config = {
+            params: {
+                chat_id: chat_id.toString(),
+                offset: 0,
+                limit: 10
+            }
+        }
 
-        }})
+        console.warn('aaaaaaa: ', config)
+        
+        return api.get<any>('/chat/conv', config)
     }
 
  }
