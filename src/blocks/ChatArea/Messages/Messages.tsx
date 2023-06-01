@@ -3,15 +3,10 @@ import {Message, MessageLoader} from "./Message";
 import {useEffect} from "react";
 import {scrollToBottom} from "../../../utils/utils";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchMessages} from "../../../store/messagesSlice.js";
+import {getMessages, setActiveChat} from "../../../store/messagesSlice";
 import ChatListService from "../../../service/ChatListService";
 import { IUser } from "../../../models/IUser";
 import React from "react";
-
-
-// const storedUserInfo : IUser = useSelector((state : any) => state.user.userInfo);
-
-// const YOUR_ID = storedUserInfo.user_id;
 
 export const Loader = () => (
     <>
@@ -27,31 +22,27 @@ export default function Messages (props) {
 
     useEffect(() => {
         ChatListService.activateChat(props.chatId)
-				.then(() => {
-					console.log('Чат активирован',props.chatId)
-                    console.log('------');
-				})
-				.catch((e) => {
-					console.log('Чат не активирован', props.chatId);
-					console.log(e)
-                    console.log('------');
-				})
-
-        ChatListService.getMessages(props.chatId)
-            .then((res) => {
-                console.log('Список сообщений из чата:', props.chatId);
-                console.log(res.data);
+            .then(() => {
+                console.log('Чат активирован',props.chatId)
                 console.log('------');
-                dispatch(s)
             })
             .catch((e) => {
-                console.log(e);
-            })   
-    },[])
+                console.log('Чат не активирован', props.chatId);
+                console.log(e)
+                console.log('------');
+            })
+        
+        dispatch(setActiveChat(props.chatId))
 
-    // const messagesList = useSelector((state) => state.messageList.messages);
-    // const chatListStatus = useSelector((state) => state.messageList.status);
-    // const chatListError = useSelector((state) => state.messageList.error);
+        //@ts-ignore
+        dispatch(getMessages({ chat_id: props.chatId }))
+    },[dispatch,props.chatId])
+
+    const messagesList = useSelector((state) => state.messageList.messages);
+    const chatListStatus = useSelector((state) => state.messageList.status);
+    const chatListError = useSelector((state) => state.messageList.error);
+
+    const YOUR_ID = useSelector((state) => state.user.userInfo.user_id);
 
     // useEffect(()=>{
     //     dispatch(fetchMessages(props.id));
@@ -64,22 +55,27 @@ export default function Messages (props) {
 
     return (
         <>
-            <div className={s.error}>
-                    Возникла ошибка загрузки сообщений
-            </div>
-            {/* {(chatListError !== null) && (
+            {((chatListError) && (chatListStatus !== "Rejected")) && (
                 <div className={s.error}>
-                    Возникла ошибка загрузки сообщений
+                    <p>There is an error {chatListError}</p>
                 </div>
             )}
-            {(chatListStatus === "pending") && (
+
+            {((chatListStatus === "Pending") && (!chatListError)) && (
                 <Loader/>
             )}
-            {(chatListStatus === "fulfilled") &&
-                messagesList.map((message,index) => {
-                    return <Message key={index} text={message.Payload} isMine={(message.SenderID === YOUR_ID)} date={message.CreatedAt}/>
+
+            {((chatListStatus === "Fulfilled") && (messagesList === null)) && (
+                <div className={s.error}>
+                    There are no messages now :(
+                </div>
+            )}
+
+            {((chatListStatus === "Fulfilled") && (messagesList)) &&
+                messagesList.map((message) => {
+                    return <Message key={message.msg_id} payload={message.Payload} isMine={(message.SenderID === YOUR_ID)} date={message.CreatedAt} chat_id={""} created_at={false} msg_id={""} sender_id={""}/>
                 })
-            } */}
+            }
         </>
     )
 }

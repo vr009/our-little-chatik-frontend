@@ -32,7 +32,7 @@ export default function ChatBoard () {
     return (
         <div className={s.board}>
             {
-                (((chatListStatus === "Fulfilled") && (chatList.length === 0)) &&
+                (((chatListStatus === "Fulfilled") && (chatList.length === null)) &&
                     <div className={s.error}>
                         <b>You don`t have any chats</b>
                         <br/>

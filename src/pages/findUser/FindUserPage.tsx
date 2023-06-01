@@ -75,7 +75,7 @@ export default function FindUserPage (){
                                 surname={element.surname}
                                 chatId={element.user_id}
                                 lastOnline={element.last_auth}
-                                key={element.id}
+                                key={element.user_id}
                             />
                         ))
                 }

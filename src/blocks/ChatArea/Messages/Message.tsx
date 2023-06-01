@@ -9,7 +9,8 @@ type ChatMessageType = {
     date: number;
     msg_id: string;
     payload: string;
-    sender_id: string
+    sender_id: string;
+    isMine: boolean;
 };
 
 export const MessageLoader = () => (
@@ -49,7 +50,7 @@ export const Message = (props: ChatMessageType) => {
         <>
             <div className={`${s.messageLine} ${ props.isMine ? s.mine : s.notMine}`}>
                 <div>
-                    <p className={s.messageText}>{props.text}</p>
+                    <p className={s.messageText}>{props.payload}</p>
                 </div>
                 <div className={s.messageDate}>
                     <p className={s.messageDate_time} >{messageTime}</p>
