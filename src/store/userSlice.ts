@@ -60,7 +60,7 @@ export const whoAmI  = createAsyncThunk(
         try {
             AuthService.whoAmI()
             .then((res) => {
-                console.log("Текущий юзер: ",res.data);
+                // console.log("Текущий юзер: ",res.data);
                 dispatch(setUser(res.data))
                 // setUserInfo({name: res.data.name, surname: res.data.surname});
             })

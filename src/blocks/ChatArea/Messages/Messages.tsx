@@ -16,6 +16,7 @@ export const Loader = () => (
     </>
 )
 
+
 export default function Messages (props) {
 
     const dispatch = useDispatch()
@@ -24,12 +25,10 @@ export default function Messages (props) {
         ChatListService.activateChat(props.chatId)
             .then(() => {
                 console.log('Чат активирован',props.chatId)
-                console.log('------');
             })
             .catch((e) => {
                 console.log('Чат не активирован', props.chatId);
                 console.log(e)
-                console.log('------');
             })
         
         dispatch(setActiveChat(props.chatId))
@@ -44,14 +43,10 @@ export default function Messages (props) {
 
     const YOUR_ID = useSelector((state) => state.user.userInfo.user_id);
 
-    // useEffect(()=>{
-    //     dispatch(fetchMessages(props.id));
-    // },[props.id])
 
-
-    // useEffect(() => {
-    //     scrollToBottom(props.container)
-    // }, [props.container, messagesList]);
+    useEffect(() => {
+        scrollToBottom(props.container)
+    }, [props.container, messagesList]);
 
     return (
         <>
@@ -73,7 +68,7 @@ export default function Messages (props) {
 
             {((chatListStatus === "Fulfilled") && (messagesList)) &&
                 messagesList.map((message) => {
-                    return <Message key={message.msg_id} payload={message.Payload} isMine={(message.SenderID === YOUR_ID)} date={message.CreatedAt} chat_id={""} created_at={false} msg_id={""} sender_id={""}/>
+                    return <Message key={message.payload+message.created_at} payload={message.payload} isMine={(message.sender_id === YOUR_ID)} date={message.created_at} chat_id={""} created_at={message.created_at} msg_id={message.msg_id} sender_id={message.sender_id}/>
                 })
             }
         </>

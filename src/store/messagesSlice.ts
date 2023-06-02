@@ -12,14 +12,12 @@ export const getMessages  = createAsyncThunk(
             ChatListService.getMessages(arg.chat_id)
                 .then(response => {
 
-                    console.log('Список сообщений из чата:');
-                    console.log(response.data);
+                    console.log('Список сообщений из чата:',response.data);
     
                     dispatch(setMessages(response.data));
                     //@ts-ignore
                     dispatch(setStatus('Fulfilled'))
                     dispatch(setError(null))
-                    console.log('------');
                 })
                 .catch((e:any) => {
                     dispatch(setError(e.response.status))
@@ -46,7 +44,12 @@ const messageSlice = createSlice({
             state.messages = action.payload
         },
         pushMessage(state, action) {
-            state.messages = state.messages.concat(action.payload)
+            if (state.messages !== null) {
+                state.messages = state.messages.concat(action.payload)
+            } else {
+                state.messages = action.payload
+            }
+            
         },
         setError(state, action) {
             state.error = action.payload
@@ -60,6 +63,6 @@ const messageSlice = createSlice({
     }
 })
 
-export const {setMessages, setError, setStatus, setActiveChat} = messageSlice.actions;
+export const {setMessages, setError, setStatus, setActiveChat, pushMessage} = messageSlice.actions;
 
 export default messageSlice.reducer

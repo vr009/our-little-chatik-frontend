@@ -14,6 +14,22 @@ import {useNavigate} from "react-router";
 import Header from "../../blocks/Header/Header";
 
 
+const WS_URL = 'ws://127.0.0.1:8084/ws';
+export const socket = new WebSocket(WS_URL);
+
+socket.addEventListener('open', (e) => {
+    console.log('WS connected')
+})
+
+socket.addEventListener('error', (e) => {
+    console.log('WS error: ', e)
+})
+
+socket.onmessage = function (e) {
+    console.log(JSON.parse(e.data))
+}
+
+
 export default function MessagesPage() {
 
     const isModalVisible = useSelector(state => state.modal.isVisible)

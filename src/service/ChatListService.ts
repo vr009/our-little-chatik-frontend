@@ -33,8 +33,6 @@ export default class ChatListService {
                 limit: 10
             }
         }
-
-        console.warn('aaaaaaa: ', config)
         
         return api.get<any>('/chat/conv', config)
     }

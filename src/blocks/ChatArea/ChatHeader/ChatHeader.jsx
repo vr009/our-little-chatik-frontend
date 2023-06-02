@@ -3,6 +3,8 @@ import Picture from "../../../components/picture/Picture";
 import {useSelector} from "react-redux";
 import {useEffect} from "react";
 import {Skeleton} from "../../../components/sceleton/Sceleton";
+import defaultAvatar from "../../../assets/png/default_avatar.png";
+
 
 export default function ChatHeader (props) {
 
@@ -14,20 +16,22 @@ export default function ChatHeader (props) {
 
     return (
         <div className={s.header}>
-            { (chatStatus === 'fulfilled') &&
-                <div className={s.content}>
-                    <Picture
-                        class={s.avatar}
-                        src={currentChat.avatar}
+            { (chatStatus === 'Fulfilled') &&
+                <div style={{height: 100 + '%', marginLeft: 10 + 'px', display: 'flex', alignItems: 'center',}}>
+                    {/* <Picture
+                        // src={ storedUserInfo.avatar ? storedUserInfo.avatar : defaultAvatar }
+                        src={defaultAvatar }
                         alt={''}
-                    />
-                    <div className={s.info}>
-                        {currentChat.name} {currentChat.surname}
+                    /> */}
+                    {/* <div className={s.info}> */}
+                    <div>
+                        {props.id}
+                        {/* {currentChat.name} {currentChat.surname} */}
                     </div>
                 </div>
             }
 
-            { (chatStatus === 'pending') &&
+            { (chatStatus === 'Pending') &&
                 <div className={s.content}>
                     <div className={s.avatar}>
                         <Skeleton/>
