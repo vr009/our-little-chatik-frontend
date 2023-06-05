@@ -66,7 +66,7 @@ export default function Messages (props) {
                 </div>
             )}
 
-            {((chatListStatus === "Fulfilled") && (messagesList)) &&
+            {((chatListStatus === "Fulfilled") && (!!messagesList)) &&
                 messagesList.map((message) => {
                     return <Message key={message.payload+message.created_at} payload={message.payload} isMine={(message.sender_id === YOUR_ID)} date={message.created_at} chat_id={""} created_at={message.created_at} msg_id={message.msg_id} sender_id={message.sender_id}/>
                 })

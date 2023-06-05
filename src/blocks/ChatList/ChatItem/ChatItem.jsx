@@ -36,7 +36,7 @@ export const LoadingChatItem = () => {
 	)
 }
 
-export default function ChatItem(props) {
+export const ChatItem = React.memo((props) => {
 
 	const dispatch = useDispatch()
 
@@ -45,17 +45,16 @@ export default function ChatItem(props) {
 	const handler = () => {
 		if (props.type === "Chatboard") {
 			console.log("Chatboard");
-
-		
 			navigate(`/messages/${props.chatId}`)
 		} else {
 			console.log('закрываем')
 		
 			ChatListService.addChat([props.chatId])
-				.then(() => {
+				.then((res) => {
+					console.log(res.data.chat_id)
 					dispatch(toggleVisible());
 					dispatch(getChats())
-					navigate(`/messages/${props.chatId}`)
+					navigate(`/messages/${res.data.chat_id}`)
 				})
 				.catch((e)=> {
 					alert(e.message)
@@ -93,4 +92,4 @@ export default function ChatItem(props) {
 			{/* </Link> */}
 		</>
 	);
-};
+});

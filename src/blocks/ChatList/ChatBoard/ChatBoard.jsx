@@ -1,4 +1,4 @@
-import ChatItem, {LoadingChatItem} from "../ChatItem/ChatItem.jsx";
+import {ChatItem, LoadingChatItem} from "../ChatItem/ChatItem.jsx";
 import s from "./ChatBoard.module.css"
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
@@ -32,7 +32,7 @@ export default function ChatBoard () {
     return (
         <div className={s.board}>
             {
-                (((chatListStatus === "Fulfilled") && (chatList.length === null)) &&
+                (((chatListStatus === "Fulfilled") && (chatList.length === 0)) &&
                     <div className={s.error}>
                         <b>You don`t have any chats</b>
                         <br/>

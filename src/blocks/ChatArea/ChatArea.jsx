@@ -3,9 +3,8 @@ import { useParams } from "react-router-dom";
 import {useCallback, useEffect, useRef, useState} from "react";
 import { v4 as createId } from "uuid"
 import Messages, { Loader } from "./Messages/Messages";
-import { socket } from "../../pages/messages/MessagesPage";
-import ChatHeader from "./ChatHeader/ChatHeader";
-import {addMessage, pushMessage} from "../../store/messagesSlice.ts";
+import {ChatHeader} from "./ChatHeader/ChatHeader";
+import {pushMessage} from "../../store/messagesSlice.ts";
 import {useDispatch, useSelector} from "react-redux";
 import Modal from "../../components/modal/Modal.jsx";
 import Input from "../../components/input/Input.tsx";
@@ -22,36 +21,78 @@ export default function ChatArea() {
     const dispatch = useDispatch();
 
     const [messageValue, setMessageValue] = useState('');
+    const [wsStatus, setwsStatus] = useState(false)
 
     const params = useParams();
 
     const containerRef = useRef(null);
+    const socket = useRef(null)
 
     const messageChange = useCallback((event)=>{
         setMessageValue(event.target.value)
     },[])
 
+    const WS_URL = 'ws://127.0.0.1:8084/ws';
 
     const INITIAL_MESSAGE = {
-        "chatID": params.chatId,
-        "senderID": CURRENT_USER_DATA.user_id, 
+        "chat_id": params.chatId,
+        "sender_id": CURRENT_USER_DATA.user_id, 
         "payload": 'INITIAL_MESSAGE', 
-        "SessionStart": true
+        "session_start": true
     }
 
-    useEffect(()=> {    
-        socket.onmessage = (e) => {
-            console.log('WS message: ', JSON.parse(e.data))
-            dispatch(pushMessage(e.data))
+    socket.onmessage = function (e) {
+        console.log(e.data);
+        console.log(JSON.parse(e.data));
+    }
+
+    const wsConnect = () => {
+        console.log('Try to connect..')
+        socket.current = new WebSocket(WS_URL);
+
+        socket.current.onopen = () => {
+            console.log('WS connected');
+            console.log('WS Initial message',INITIAL_MESSAGE)
+            socket.current.send(JSON.stringify(INITIAL_MESSAGE))
+            setwsStatus(true);
         }
-    },[])
+
+        socket.current.onclose = () => {
+            console.log('WS disconnected');
+            setwsStatus(false);
+            
+            console.log('Try to reconnect..')
+            wsConnect();
+        }
+    }
 
     useEffect(()=> {
-        if (CURRENT_USER_DATA.user_id && socket.readyState === 1) {
-            console.log('WS Initial message',INITIAL_MESSAGE)
-            socket.send(JSON.stringify(INITIAL_MESSAGE))
+        if (CURRENT_USER_DATA.user_id) {
+            wsConnect()
+            if (socket.current) {
+                gettingMessages()
+            }
+            
         }
-    },[CURRENT_USER_DATA,params.chatId,socket.readyState])
+    },[socket,CURRENT_USER_DATA,params.chatId])
+
+    const gettingMessages = useCallback(() => {
+        if (!socket.current) return;
+
+        socket.current.onmessage = (e) => {
+            console.log('WS message: ', JSON.parse(e.data))
+            console.log(e.data);
+            dispatch(pushMessage(JSON.parse(e.data)))
+        }
+    })
+
+    // useEffect(()=> {    
+    //     socket.onmessage = (e) => {
+    //         console.log('WS message: ', JSON.parse(e.data))
+    //         console.log(e.data);
+    //         dispatch(pushMessage(JSON.parse(e.data)))
+    //     }
+    // },[])
 
     const handleAddMessageClick = useCallback(() => {
         if (!messageValue) {
@@ -59,14 +100,14 @@ export default function ChatArea() {
         }
 
         let currentMessage = {
-            "chatID": params.chatId,
-            "senderID": CURRENT_USER_DATA.user_id, 
+            "chat_id": params.chatId,
+            "sender_id": CURRENT_USER_DATA.user_id, 
             "payload": messageValue, 
-            "SessionStart": false
+            "session_start": false
         }
 
         // dispatch(addMessage(currentMessage))
-        socket.send(JSON.stringify(currentMessage))
+        socket.current.send(JSON.stringify(currentMessage))
          
         console.log(currentMessage)
 
@@ -93,7 +134,7 @@ export default function ChatArea() {
                 {
                     ((CURRENT_USER_DATA) &&
                     <>
-                        <ChatHeader id={params.chatId}/>
+                        <ChatHeader id={params.chatId} isOnline={wsStatus}/>
                         <div className={s.messages} ref={containerRef}>
                             <Messages
                                     chatId={params.chatId}

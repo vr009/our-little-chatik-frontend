@@ -2,23 +2,47 @@
     width: 100%;
     border-bottom: solid #333333;
     background: #333333;
-    height: 60px;
+    height: 62px;
+    box-sizing: border-box;
+    padding: 10px;
+    flex-shrink: 0;
 }
 
 .header .content {
     display: flex;
     justify-content: start;
-    margin: 10px;
     align-items: center;
+    height: 100%;
 }
 
 .header .info {
     margin-left: 15px;
-    width: 150px;
-    height: 1em;
+    position: relative;
+}
+
+.header .info::after {
+    content: "";
+    width: 10px;
+    height: 10px;
+    background: radial-gradient(50% 50%, #f01212 0%, #b54f19 100%);
+    border-radius: 50%;
+    display: inline-block;
+    position: absolute;
+    top: 6px;
+    right: -20px;
+    box-shadow: 0 0 15px #b54f19;
+    opacity: .3;
+}
+
+.header.online .info::after {
+
+    background: radial-gradient(50% 50%, #12d404 0%, #0a4705 100%);
+
+    box-shadow: 0 0 15px #12d404;
+    opacity: 1;
 }
 
 .avatar {
-    width: 55px;
-    height: 55px;
+    width: 25px;
+    height: 25px;
 }

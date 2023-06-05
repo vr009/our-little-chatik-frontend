@@ -1,6 +1,6 @@
 import Input from "../../components/input/Input";
 import Button from "../../components/button/Button.jsx";
-import ChatItem, {LoadingChatItem} from "../../blocks/ChatList/ChatItem/ChatItem.jsx"
+import {ChatItem, LoadingChatItem} from "../../blocks/ChatList/ChatItem/ChatItem.jsx"
 import s from "./FindUserPage.module.css"
 import {useCallback, useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
