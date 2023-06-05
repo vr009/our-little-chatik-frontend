@@ -17,6 +17,7 @@ import store from "../../store";
 export default function ChatArea() {
 
     const CURRENT_USER_DATA = useSelector((state) => state.user.userInfo);
+    const CURRENT_CHAT_ID = params.chatId;
 
     const dispatch = useDispatch();
 
@@ -35,7 +36,7 @@ export default function ChatArea() {
     const WS_URL = 'ws://127.0.0.1:8084/ws';
 
     const INITIAL_MESSAGE = {
-        "chat_id": params.chatId,
+        "chat_id": CURRENT_CHAT_ID,
         "sender_id": CURRENT_USER_DATA.user_id, 
         "payload": 'INITIAL_MESSAGE', 
         "session_start": true
@@ -73,26 +74,31 @@ export default function ChatArea() {
                 gettingMessages()
             }
             
+            
         }
-    },[socket,CURRENT_USER_DATA,params.chatId])
+        
+    },[socket,CURRENT_USER_DATA,CURRENT_CHAT_ID])
+
+    useEffect(()=>{
+        return () => {
+            socket.current.close()
+        }
+    },[CURRENT_CHAT_ID])
 
     const gettingMessages = useCallback(() => {
         if (!socket.current) return;
 
         socket.current.onmessage = (e) => {
-            console.log('WS message: ', JSON.parse(e.data))
+            
             console.log(e.data);
-            dispatch(pushMessage(JSON.parse(e.data)))
+            if (e.data.chat_id === CURRENT_CHAT_ID) {
+                console.log('WS message for you: ', JSON.parse(e.data))
+                dispatch(pushMessage(JSON.parse(e.data)))
+            } else {
+                console.log('WS message NOT for you: ', JSON.parse(e.data))
+            }
         }
     })
-
-    // useEffect(()=> {    
-    //     socket.onmessage = (e) => {
-    //         console.log('WS message: ', JSON.parse(e.data))
-    //         console.log(e.data);
-    //         dispatch(pushMessage(JSON.parse(e.data)))
-    //     }
-    // },[])
 
     const handleAddMessageClick = useCallback(() => {
         if (!messageValue) {
@@ -121,7 +127,6 @@ export default function ChatArea() {
             handleAddMessageClick();
         }
     });
-
 
         //TODO поправить userID на chatID
 
