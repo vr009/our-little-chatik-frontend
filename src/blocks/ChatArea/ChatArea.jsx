@@ -33,14 +33,7 @@ export default function ChatArea() {
         setMessageValue(event.target.value)
     },[])
 
-    const WS_URL = 'ws://127.0.0.1:8084/ws';
-
-    const INITIAL_MESSAGE = {
-        "chat_id": CURRENT_CHAT_ID,
-        "sender_id": CURRENT_USER_DATA.user_id, 
-        "payload": 'INITIAL_MESSAGE', 
-        "session_start": true
-    }
+    const WS_URL = 'ws://127.0.0.1:8084/ws/chat?chat_id='+CURRENT_CHAT_ID+'&user_id=CURRENT_USER_DATA.user_id';
 
     socket.onmessage = function (e) {
         console.log(e.data);
@@ -53,8 +46,6 @@ export default function ChatArea() {
 
         socket.current.onopen = () => {
             console.log('WS connected');
-            console.log('WS Initial message',INITIAL_MESSAGE)
-            socket.current.send(JSON.stringify(INITIAL_MESSAGE))
             setwsStatus(true);
         }
 
@@ -105,15 +96,10 @@ export default function ChatArea() {
             return;
         }
 
-        let currentMessage = {
-            "chat_id": params.chatId,
-            "sender_id": CURRENT_USER_DATA.user_id, 
-            "payload": messageValue, 
-            "session_start": false
-        }
+        let currentMessage = messageValue
 
         // dispatch(addMessage(currentMessage))
-        socket.current.send(JSON.stringify(currentMessage))
+        socket.current.send(currentMessage)
          
         console.log(currentMessage)
 
