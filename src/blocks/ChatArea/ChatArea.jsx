@@ -16,6 +16,7 @@ import store from "../../store";
 
 export default function ChatArea() {
 
+    const params = useParams();
     const CURRENT_USER_DATA = useSelector((state) => state.user.userInfo);
     const CURRENT_CHAT_ID = params.chatId;
 
@@ -24,7 +25,6 @@ export default function ChatArea() {
     const [messageValue, setMessageValue] = useState('');
     const [wsStatus, setwsStatus] = useState(false)
 
-    const params = useParams();
 
     const containerRef = useRef(null);
     const socket = useRef(null)
