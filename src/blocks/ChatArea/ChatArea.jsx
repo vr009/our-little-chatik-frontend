@@ -56,6 +56,17 @@ export default function ChatArea() {
             console.log('Try to reconnect..')
             wsConnect();
         }
+
+        socket.onmessage = (e) => {
+            console.log(e.data);
+            if (e.data.chat_id === CURRENT_CHAT_ID) {
+                console.log('WS message for you: ', JSON.parse(e.data))
+                dispatch(pushMessage(JSON.parse(e.data)))
+            } else {
+                console.log('WS message NOT for you: ', JSON.parse(e.data))
+            }
+        }
+
     }
 
     useEffect(()=> {
