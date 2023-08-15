@@ -42,12 +42,7 @@ const messageSlice = createSlice({
             state.messages = action.payload
         },
         pushMessage(state, action) {
-            if (state.messages !== null) {
-                state.messages = state.messages.concat(action.payload)
-            } else {
-                state.messages = action.payload
-            }
-            
+            state.messages = state.messages.concat(action.payload)
         },
         setError(state, action) {
             state.error = action.payload

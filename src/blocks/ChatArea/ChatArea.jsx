@@ -81,7 +81,7 @@ export default function ChatArea() {
             console.log(CURRENT_CHAT_ID);
             console.log('WS message for you: ', e.data)
             console.log('WS message for you: ', JSON.parse(e.data))
-            dispatch(setMessages([JSON.parse(e.data)]))
+            dispatch(pushMessage([JSON.parse(e.data)]))
             console.log('WS message NOT for you: ', JSON.parse(e.data))
         }
     })
