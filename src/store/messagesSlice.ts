@@ -11,9 +11,7 @@ export const getMessages  = createAsyncThunk(
             dispatch(setStatus('Pending'))
             ChatListService.getMessages(arg.chat_id)
                 .then(response => {
-
                     console.log('Список сообщений из чата:',response.data);
-    
                     dispatch(setMessages(response.data));
                     //@ts-ignore
                     dispatch(setStatus('Fulfilled'))

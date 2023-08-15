@@ -4,7 +4,7 @@ import {useCallback, useEffect, useRef, useState} from "react";
 import { v4 as createId } from "uuid"
 import Messages, { Loader } from "./Messages/Messages";
 import {ChatHeader} from "./ChatHeader/ChatHeader";
-import {pushMessage} from "../../store/messagesSlice.ts";
+import {pushMessage, setMessages} from "../../store/messagesSlice.ts";
 import {useDispatch, useSelector} from "react-redux";
 import Modal from "../../components/modal/Modal.jsx";
 import Input from "../../components/input/Input.tsx";
@@ -76,14 +76,12 @@ export default function ChatArea() {
 
     const gettingMessages = useCallback(() => {
         if (!socket.current) return;
-
         socket.current.onmessage = (e) => {
-
             console.log(e.data.chat_id);
             console.log(CURRENT_CHAT_ID);
             console.log('WS message for you: ', e.data)
             console.log('WS message for you: ', JSON.parse(e.data))
-            dispatch(pushMessage(JSON.parse(e.data)))
+            dispatch(setMessages([JSON.parse(e.data)]))
             console.log('WS message NOT for you: ', JSON.parse(e.data))
         }
     })
