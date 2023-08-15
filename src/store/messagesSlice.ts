@@ -32,7 +32,7 @@ export const getMessages  = createAsyncThunk(
 const messageSlice = createSlice({
     name: "messages",
     initialState: {
-        messages: [1,2,3,4],
+        messages: [],
         activeChat: '',
         status: null,
         error: null
