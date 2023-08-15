@@ -78,7 +78,8 @@ export default function ChatArea() {
         if (!socket.current) return;
 
         socket.current.onmessage = (e) => {
-            console.log(e.data);
+
+            console.log(e.data.chat_id);
             console.log(CURRENT_CHAT_ID);
             console.log('WS message for you: ', e.data)
             console.log('WS message for you: ', JSON.parse(e.data))
