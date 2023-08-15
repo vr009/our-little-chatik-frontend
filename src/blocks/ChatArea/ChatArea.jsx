@@ -56,17 +56,6 @@ export default function ChatArea() {
             console.log('Try to reconnect..')
             wsConnect();
         }
-
-        socket.onmessage = (e) => {
-            console.log(e.data);
-            if (e.data.chat_id === CURRENT_CHAT_ID) {
-                console.log('WS message for you: ', JSON.parse(e.data))
-                dispatch(pushMessage(JSON.parse(e.data)))
-            } else {
-                console.log('WS message NOT for you: ', JSON.parse(e.data))
-            }
-        }
-
     }
 
     useEffect(()=> {
@@ -75,8 +64,6 @@ export default function ChatArea() {
             if (socket.current) {
                 gettingMessages()
             }
-            
-            
         }
         
     },[socket,CURRENT_USER_DATA,CURRENT_CHAT_ID])
@@ -91,14 +78,12 @@ export default function ChatArea() {
         if (!socket.current) return;
 
         socket.current.onmessage = (e) => {
-            
             console.log(e.data);
-            if (e.data.chat_id === CURRENT_CHAT_ID) {
-                console.log('WS message for you: ', JSON.parse(e.data))
-                dispatch(pushMessage(JSON.parse(e.data)))
-            } else {
-                console.log('WS message NOT for you: ', JSON.parse(e.data))
-            }
+            console.log(CURRENT_CHAT_ID);
+            console.log('WS message for you: ', e.data)
+            console.log('WS message for you: ', JSON.parse(e.data))
+            dispatch(pushMessage(JSON.parse(e.data)))
+            console.log('WS message NOT for you: ', JSON.parse(e.data))
         }
     })
 
