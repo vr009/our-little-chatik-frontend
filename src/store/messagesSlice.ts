@@ -43,8 +43,14 @@ const messageSlice = createSlice({
             state.messages = action.payload
         },
         pushMessage(state, action) {
-            console.log('push', action.payload[0])
-            state.messages.push(action.payload[0])
+            if (state.messages === null) {
+                state.messages = action.payload;
+            } else if (state.messages.length === 0){
+                state.messages = action.payload;
+            } else {
+                console.log('push', action.payload[0]);
+                state.messages.push(action.payload[0]);
+            }
         },
         setError(state, action) {
             state.error = action.payload
