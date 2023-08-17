@@ -53,8 +53,8 @@ export default function ChatArea() {
             console.log('WS disconnected');
             setwsStatus(false);
             
-            console.log('Try to reconnect..')
-            wsConnect();
+            // console.log('Try to reconnect..')
+            // wsConnect();
         }
     }
 

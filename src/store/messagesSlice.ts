@@ -49,7 +49,7 @@ const messageSlice = createSlice({
                 state.messages = action.payload;
             } else {
                 console.log('push', action.payload[0]);
-                state.messages.push(action.payload[0]);
+                state.messages.unshift(action.payload[0]);
             }
         },
         setError(state, action) {
