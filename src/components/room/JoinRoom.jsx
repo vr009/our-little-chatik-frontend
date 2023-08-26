@@ -12,8 +12,8 @@ const JoinRoom = (props) => {
     return (
         <div>
             <button
-                onClick={handler}>Join Room
                 className={s.callbutton}
+                onClick={handler}>Join Room
             </button>
         </div>
     );

@@ -14,8 +14,8 @@ const CreateRoom = (props) => {
     return (
         <div>
             <button
-                onClick={create}>Create Room
                 className={s.callbutton}
+                onClick={create}>Create Room
             </button>
         </div>
     );
