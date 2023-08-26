@@ -9,7 +9,7 @@ const CreateRoom = (props) => {
         const resp = await fetch("http://localhost:8090/create?chat_id="+props.chatId);
         const { room_id } = await resp.json();
         console.log('HERE', room_id)
-		props.history.push(`/room/${room_id}`)
+		// props.history.push(`/room/${room_id}`)
         navigate(`/room/${room_id}`);
     };
 
