@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import { useParams } from "react-router-dom";
 
 const Room = (props) => {
     const userVideo = useRef();
@@ -6,6 +7,7 @@ const Room = (props) => {
     const partnerVideo = useRef();
     const peerRef = useRef();
     const webSocketRef = useRef();
+    const params = useParams();
 
     const openCamera = async () => {
         const allDevices = await navigator.mediaDevices.enumerateDevices();
@@ -34,7 +36,7 @@ const Room = (props) => {
             userStream.current = stream;
 
             webSocketRef.current = new WebSocket(
-                `ws://localhost:8090/join?roomID=${props.chatId}`
+                `ws://localhost:8090/join?roomID=${params.roomID}`
             );
 
             webSocketRef.current.addEventListener("open", () => {
