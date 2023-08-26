@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
+import {ButtonLink} from "../button/Button.jsx";
 
 const Room = (props) => {
     const userVideo = useRef();
@@ -149,6 +150,7 @@ const Room = (props) => {
         <div>
             <video autoPlay controls={true} ref={userVideo}></video>
             <video autoPlay controls={true} ref={partnerVideo}></video>
+            <ButtonLink href={'/'}>Вернуться назад</ButtonLink>
         </div>
     );
 };
