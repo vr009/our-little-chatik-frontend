@@ -159,7 +159,7 @@ const Room = (props) => {
             <video autoPlay controls={true} ref={userVideo}></video>
             <video autoPlay controls={true} ref={partnerVideo}></video>
             <div>
-                <ButtonLink href={'/'}>Вернуться назад</ButtonLink>
+                <ButtonLink onClick={stopBothVideoAndAudio} href={'/'}>Вернуться назад</ButtonLink>
             </div>
         </div>
     );
