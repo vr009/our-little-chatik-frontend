@@ -3,6 +3,7 @@ import s from './Button.module.css';
 import {useNavigate} from "react-router";
 
 const CreateRoom = (props) => {
+    const navigate = useNavigate();
     const create = async (e) => {
         e.preventDefault();
 
