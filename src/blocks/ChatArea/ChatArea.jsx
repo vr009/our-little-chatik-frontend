@@ -9,9 +9,11 @@ import {useDispatch, useSelector} from "react-redux";
 import Modal from "../../components/modal/Modal.jsx";
 import Input from "../../components/input/Input.tsx";
 import Button from "../../components/button/Button.jsx";
+import CreateRoom from "../../components/room/CreateRoom.jsx";
 import { useWebSocket } from "react-use-websocket/dist/lib/use-websocket";
 import { io } from "socket.io-client";
 import store from "../../store";
+import JoinRoom from "../../components/room/JoinRoom.jsx";
 
 
 export default function ChatArea() {
@@ -137,6 +139,12 @@ export default function ChatArea() {
                             <Button className={s.button} onClick={handleAddMessageClick}>
                                 Send
                             </Button>
+                            <CreateRoom chatId={params.chatId}>
+                                Create call
+                            </CreateRoom>
+                            <JoinRoom chatId={params.chatId}>
+                                Join Room
+                            </JoinRoom>
                         </div>
                     </>
                     )

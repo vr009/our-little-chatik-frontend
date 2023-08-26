@@ -14,7 +14,7 @@ import ErrorPage from './pages/404/404.jsx';
 import MessagesPage from "./pages/messages/MessagesPage.jsx";
 import ChatArea from "./blocks/ChatArea/ChatArea";
 import Welcome from "./pages/welcome/welcome.jsx";
-
+import Room from "./components/room/Room.jsx";
 
 const router = createBrowserRouter([
     {
@@ -25,6 +25,11 @@ const router = createBrowserRouter([
     {
         path: "login",
         element: <Root isRegistration={false}/>,
+        errorElement: <ErrorPage />,
+    },
+    {
+        path: "/room/:roomID",
+        element: <Room/>,
         errorElement: <ErrorPage />,
     },
     {
