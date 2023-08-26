@@ -146,6 +146,14 @@ const Room = (props) => {
         partnerVideo.current.srcObject = e.streams[0];
     };
 
+    const stopBothVideoAndAudio = () => {
+        userStream.current.getTracks().forEach((track) => {
+            if (track.readyState === 'live') {
+                track.stop();
+            }
+        });
+    }
+
     return (
         <div>
             <video autoPlay controls={true} ref={userVideo}></video>
