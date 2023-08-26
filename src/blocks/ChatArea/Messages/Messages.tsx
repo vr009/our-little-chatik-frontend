@@ -30,7 +30,8 @@ export default function Messages (props) {
                 console.log('Чат не активирован', props.chatId);
                 console.log(e)
             })
-        
+
+        console.log('!!!!NOW HERE!!!!!', props)
         dispatch(setActiveChat(props.chatId))
 
         //@ts-ignore

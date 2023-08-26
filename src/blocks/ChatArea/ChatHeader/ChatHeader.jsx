@@ -28,7 +28,7 @@ export const ChatHeader = React.memo((props) =>{
                     </div>
                     {/* <div className={s.info}> */}
                     <div className={s.info}>
-                        {props.name}
+                        {currentChatId}
                         {/* {currentChat.name} {currentChat.surname} */}
                     </div>
                 </div>
