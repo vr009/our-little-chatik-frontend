@@ -1,6 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import {ButtonLink} from "../button/Button.jsx";
+import {useNavigate} from "react-router-dom";
+import Button from "../button/Button.jsx";
+import s from "../../blocks/ChatArea/ChatArea.module.css";
 
 const Room = (props) => {
     const userVideo = useRef();
@@ -9,6 +12,7 @@ const Room = (props) => {
     const peerRef = useRef();
     const webSocketRef = useRef();
     const params = useParams();
+    const navigate = useNavigate()
 
     const openCamera = async () => {
         const allDevices = await navigator.mediaDevices.enumerateDevices();
@@ -147,11 +151,13 @@ const Room = (props) => {
     };
 
     const stopBothVideoAndAudio = () => {
+        console.log('here hop')
         userStream.current.getTracks().forEach((track) => {
             if (track.readyState === 'live') {
                 track.stop();
             }
         });
+        navigate('/');
     }
 
     return (
@@ -159,7 +165,7 @@ const Room = (props) => {
             <video autoPlay controls={true} ref={userVideo}></video>
             <video autoPlay controls={true} ref={partnerVideo}></video>
             <div>
-                <ButtonLink onClick={stopBothVideoAndAudio} href={'/'}>Вернуться назад</ButtonLink>
+                <Button className={s.button} onClick={stopBothVideoAndAudio}>Вернуться назад</Button>
             </div>
         </div>
     );
