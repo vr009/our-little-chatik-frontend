@@ -6,7 +6,7 @@ const JoinRoom = (props) => {
     const navigate = useNavigate();
 
     const handler = () => {
-        navigate(`/room/${props.chat_id}`);
+        navigate(`/room/${props.chatId}`);
     }
 
     return (
