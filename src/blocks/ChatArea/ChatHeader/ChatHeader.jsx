@@ -14,6 +14,7 @@ export const ChatHeader = React.memo((props) =>{
 
     // const currentChat = chatList.find(chat=> chat.id === props.id)
 
+    console.log(props.name)
     return (
         <div className={`${s.header} ${(props.isOnline) ? s.online : ''}`}>
             { (chatStatus === 'Fulfilled') &&
@@ -27,7 +28,7 @@ export const ChatHeader = React.memo((props) =>{
                     </div>
                     {/* <div className={s.info}> */}
                     <div className={s.info}>
-                        {currentChatId}
+                        {props.name}
                         {/* {currentChat.name} {currentChat.surname} */}
                     </div>
                 </div>

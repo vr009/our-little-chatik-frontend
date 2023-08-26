@@ -112,7 +112,7 @@ export default function ChatArea() {
     });
 
         //TODO поправить userID на chatID
-
+    console.log('!!!!HERE', params.name, params)
     return (
         <>
             <div className={s.main}>
@@ -122,7 +122,7 @@ export default function ChatArea() {
                 {
                     ((CURRENT_USER_DATA) &&
                     <>
-                        <ChatHeader id={params.chatId} isOnline={wsStatus}/>
+                        <ChatHeader id={params.chatId} isOnline={wsStatus} name={params.name}/>
                         <div className={s.messages} ref={containerRef}>
                             <Messages
                                     chatId={params.chatId}
