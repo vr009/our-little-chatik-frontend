@@ -50,7 +50,6 @@ export default function ChatBoard () {
                                 avatar={element.avatar}
                                 name={element.name}
                                 surname={element.name}
-                                nickname={element.nickname}
                                 lastMessage={element.lastMessage}
                                 chatId={element.chat_id}
                                 key={element.chat_id}

@@ -77,7 +77,7 @@ export const ChatItem = React.memo((props) => {
 				/>
 				<div className={s.userData}>
 					<div className={s.name}>
-						{props.name + " " + props.surname}
+						{props.name}
 					</div>
 					{props.lastOnline && 
 						<div className={s.lastOnline}>
