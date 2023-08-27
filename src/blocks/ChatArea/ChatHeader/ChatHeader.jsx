@@ -15,7 +15,7 @@ export const ChatHeader = React.memo((props) =>{
 
     // const currentChat = chatList.find(chat=> chat.id === props.id)
 
-    console.log(props.name)
+    console.log('HEADER!!!!!!!!!!!!!', props.name, currentChatName)
     return (
         <div className={`${s.header} ${(props.isOnline) ? s.online : ''}`}>
             { (chatStatus === 'Fulfilled') &&
