@@ -11,6 +11,7 @@ export const ChatHeader = React.memo((props) =>{
     const chatList = useSelector((state) => state.chatList.chats);
     const chatStatus = useSelector((state) => state.chatList.status);
     const currentChatId = useSelector((state) => state.messageList.activeChat)
+    const currentChatName = useSelector((state) => state.messageList.activeChatName)
 
     // const currentChat = chatList.find(chat=> chat.id === props.id)
 
@@ -28,7 +29,7 @@ export const ChatHeader = React.memo((props) =>{
                     </div>
                     {/* <div className={s.info}> */}
                     <div className={s.info}>
-                        {currentChatId}
+                        {currentChatName}
                         {/* {currentChat.name} {currentChat.surname} */}
                     </div>
                 </div>

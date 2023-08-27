@@ -3,7 +3,7 @@ import {Message, MessageLoader} from "./Message";
 import {useEffect} from "react";
 import {scrollToBottom} from "../../../utils/utils";
 import {useDispatch, useSelector} from "react-redux";
-import {getMessages, setActiveChat} from "../../../store/messagesSlice";
+import {getMessages, setActiveChat, setActiveChatName} from "../../../store/messagesSlice";
 import ChatListService from "../../../service/ChatListService";
 import { IUser } from "../../../models/IUser";
 import React from "react";
@@ -33,10 +33,11 @@ export default function Messages (props) {
 
         console.log('!!!!NOW HERE!!!!!', props)
         dispatch(setActiveChat(props.chatId))
+        dispatch(setActiveChatName(props.name))
 
         //@ts-ignore
         dispatch(getMessages({ chat_id: props.chatId }))
-    },[dispatch,props.chatId])
+    },[dispatch,props.chatId,props.name])
 
     const messagesList = useSelector((state) => state.messageList.messages);
     const chatListStatus = useSelector((state) => state.messageList.status);

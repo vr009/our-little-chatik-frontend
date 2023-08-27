@@ -101,6 +101,9 @@ const userSlice = createSlice({
         setUser(state, action) {
             state.userInfo = action.payload
         },
+        setUserName(state, action) {
+            state.userName = action.payload
+        },
         setError(state, action) {
             state.error = action.payload
         },

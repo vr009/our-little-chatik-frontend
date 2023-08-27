@@ -45,7 +45,7 @@ export const ChatItem = React.memo((props) => {
 	const handler = () => {
 		if (props.type === "Chatboard") {
 			console.log("Chatboard");
-			navigate(`/messages/${props.chatId}`)
+			navigate(`/messages/${props.chatId}/${props.name}`)
 		} else {
 			console.log('закрываем')
 		
@@ -54,7 +54,7 @@ export const ChatItem = React.memo((props) => {
 					console.log(res.data.chat_id)
 					dispatch(toggleVisible());
 					dispatch(getChats())
-					navigate(`/messages/${res.data.chat_id}`)
+					navigate(`/messages/${res.data.chat_id}/${res.data.name}`)
 				})
 				.catch((e)=> {
 					alert(e.message)

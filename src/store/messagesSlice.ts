@@ -60,10 +60,13 @@ const messageSlice = createSlice({
         },
         setActiveChat(state, action) {
             state.activeChat = action.payload
+        },
+        setActiveChatName(state, action) {
+            state.activeChatName = action.payload
         }
     }
 })
 
-export const {setMessages, setError, setStatus, setActiveChat, pushMessage} = messageSlice.actions;
+export const {setMessages, setError, setStatus, setActiveChat, setActiveChatName, pushMessage} = messageSlice.actions;
 
 export default messageSlice.reducer
