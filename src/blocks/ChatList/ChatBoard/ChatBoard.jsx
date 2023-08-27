@@ -49,7 +49,8 @@ export default function ChatBoard () {
                             <ChatItem
                                 avatar={element.avatar}
                                 name={element.name}
-                                surname={'chat'}
+                                surname={element.name}
+                                nickname={element.nickname}
                                 lastMessage={element.lastMessage}
                                 chatId={element.chat_id}
                                 key={element.chat_id}

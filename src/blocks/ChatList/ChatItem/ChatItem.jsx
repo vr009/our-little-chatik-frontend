@@ -63,7 +63,6 @@ export const ChatItem = React.memo((props) => {
 		}
 	}
 
-	console.log('=================', props)
 	return (
 		<>
 		{/*(props.type === "Chatboard" && "ff")*/}
@@ -76,7 +75,7 @@ export const ChatItem = React.memo((props) => {
 				/>
 				<div className={s.userData}>
 					<div className={s.name}>
-						{props.name +" " + props.surname}
+						{props.name + " " + props.surname + " " + props.nickname}
 					</div>
 					{props.lastOnline && 
 						<div className={s.lastOnline}>
