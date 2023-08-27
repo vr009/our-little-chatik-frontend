@@ -48,7 +48,7 @@ export default function ChatBoard () {
                         return (
                             <ChatItem
                                 avatar={element.avatar}
-                                name={`${element.chat_id.slice(0,7)}...${element.chat_id.slice(-7)}`}
+                                name={element.name}
                                 surname={''}
                                 lastMessage={element.lastMessage}
                                 chatId={element.chat_id}
