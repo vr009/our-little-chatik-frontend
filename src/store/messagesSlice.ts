@@ -34,6 +34,7 @@ const messageSlice = createSlice({
     initialState: {
         messages: [],
         activeChat: '',
+        activeChatName: '',
         status: null,
         error: null
     },

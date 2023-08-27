@@ -126,7 +126,7 @@ export default function ChatArea() {
                         <div className={s.messages} ref={containerRef}>
                             <Messages
                                     chatId={params.chatId}
-                                    name={params.name}
+                                    name={params.chatName}
                                     container={containerRef.current}
                             />
                         </div>
