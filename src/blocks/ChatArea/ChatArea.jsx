@@ -140,11 +140,8 @@ export default function ChatArea() {
                             <Button className={s.button} onClick={handleAddMessageClick}>
                                 Send
                             </Button>
-                            <CreateRoom chatId={params.chatId}>
-                                Create call
-                            </CreateRoom>
                             <JoinRoom chatId={params.chatId}>
-                                Join Room
+                                Join Call
                             </JoinRoom>
                         </div>
                     </>
