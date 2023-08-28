@@ -4,7 +4,6 @@ import {ButtonLink} from "../button/Button.jsx";
 import {useNavigate} from "react-router-dom";
 import Button from "../button/Button.jsx";
 import s from "../../blocks/ChatArea/ChatArea.module.css";
-import ChatListService from "../../service/ChatListService.js";
 import CallService from "../../service/CallService.js";
 
 const Room = (props) => {
