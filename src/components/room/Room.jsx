@@ -4,7 +4,7 @@ import {ButtonLink} from "../button/Button.jsx";
 import {useNavigate} from "react-router-dom";
 import Button from "../button/Button.jsx";
 import s from "../../blocks/ChatArea/ChatArea.module.css";
-import CallService from "../../service/CallService.js";
+import CallService from "../../service/CallService.ts";
 
 const Room = (props) => {
     const userVideo = useRef();
