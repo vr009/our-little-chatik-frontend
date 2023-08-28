@@ -46,7 +46,7 @@ export const Message = (props: ChatMessageType) => {
 
     console.log('MESSAGE', props)
 
-    let messageTime = new Date(props.date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    let messageTime = new Date(props.date*1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
     // console.log(messageTime)
     return (
         <>
