@@ -161,12 +161,12 @@ const Room = (props) => {
         CallService.deleteRoom(params.roomID)
             .then(() => {
                 console.log('room deleted',params.roomID)
+                navigate('/');
             })
             .catch((e) => {
                 console.log('room not deleted', params.roomID);
                 console.log(e)
             })
-        navigate('/');
     }
 
     return (
