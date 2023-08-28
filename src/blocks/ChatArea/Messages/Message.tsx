@@ -44,6 +44,8 @@ export const Message = (props: ChatMessageType) => {
         textAlign: props.isMine ?  "right" : "left",
     };
 
+    console.log('MESSAGE', props)
+
     let messageTime = new Date(props.date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
     // console.log(messageTime)
     return (

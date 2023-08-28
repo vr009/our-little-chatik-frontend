@@ -70,6 +70,7 @@ export default function Messages (props) {
 
             {((chatListStatus === "Fulfilled") && (!!messagesList)) &&
                 Array.from(messagesList).toReversed().map((message) => {
+                    console.log('MESSAGE created at', message.created_at)
                     return <Message key={message.payload+message.created_at} payload={message.payload} isMine={(message.sender_id === YOUR_ID)} date={message.created_at} chat_id={""} created_at={message.created_at} msg_id={message.msg_id} sender_id={message.sender_id}/>
                 })
             }
