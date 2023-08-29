@@ -4,7 +4,7 @@ import http from "../http";
 import  axios from "axios";
 // import {AuthResponse} from "../models/response/AuthResponse";
 
-export const API_URL = 'http://localhost';
+export const API_URL = 'http://54.93.80.246';
 
 const api = axios.create({
     withCredentials: true,
