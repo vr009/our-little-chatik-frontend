@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const API_URL = 'http://54.93.80.246';
+export const API_URL = window.location.origin;
 
 const api = axios.create({
     withCredentials: true,
