@@ -42,7 +42,7 @@ const Room = (props) => {
             userStream.current = stream;
 
             webSocketRef.current = new WebSocket(
-                `ws://54.93.80.246:8090/call?room_id=${params.roomID}`
+                `ws://` + window.location.host + `:8090/call?room_id=${params.roomID}`
             );
 
             webSocketRef.current.addEventListener("open", () => {
