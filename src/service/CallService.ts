@@ -7,6 +7,6 @@ import  axios from "axios";
 
 export default class CallService {
     static async deleteRoom(query):Promise<AxiosResponse<any>> {
-        return api.get<any>('finish', {params: {room_id: query}})
+        return api.delete<any>('/finish', {params: {room_id: query}})
     }
 }
