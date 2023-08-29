@@ -8,7 +8,7 @@ import {getChats, searchChats} from "../../store/chatListSlice.js";
 import Modal from "../../components/modal/Modal.jsx";
 import {toggleVisible} from "../../store/modalSlice.js";
 import Input from "../../components/input/Input.tsx";
-import FindUserPage from "../findUser/findUserPage";
+import FindUserPage from "../findUser/FindUserPage.js";
 import ChatListService from "../../service/ChatListService.ts";
 import {useNavigate} from "react-router";
 import Header from "../../blocks/Header/Header";
