@@ -35,7 +35,7 @@ export default function ChatArea() {
         setMessageValue(event.target.value)
     },[])
 
-    const WS_URL = 'ws://127.0.0.1:8089/ws/chat?chat_id='+CURRENT_CHAT_ID+'&user_id='+CURRENT_USER_DATA.user_id;
+    const WS_URL = 'ws://'+ window.location.host +':8089/ws/chat?chat_id='+CURRENT_CHAT_ID+'&user_id='+CURRENT_USER_DATA.user_id;
 
     socket.onmessage = function (e) {
         console.log(e.data);
