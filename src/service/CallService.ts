@@ -17,6 +17,6 @@ api.interceptors.request.use((config) => {
 
 export default class CallService {
     static async deleteRoom(query):Promise<AxiosResponse<any>> {
-        return api.delete<any>('/finish', {params: {room_id: query}})
+        return api.delete<any>('/video/finish', {params: {room_id: query}})
     }
 }
