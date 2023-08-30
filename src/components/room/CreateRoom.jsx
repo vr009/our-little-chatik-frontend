@@ -7,7 +7,7 @@ const CreateRoom = (props) => {
     const create = async (e) => {
         e.preventDefault();
         var base = window.location.origin;
-        const resp = await fetch(base+":8090/call?room_id="+props.chatId);
+        const resp = await fetch(base+"/video/call?room_id="+props.chatId);
         const { room_id } = await resp.json();
         console.log('HERE', room_id)
 		// props.history.push(`/room/${room_id}`)
